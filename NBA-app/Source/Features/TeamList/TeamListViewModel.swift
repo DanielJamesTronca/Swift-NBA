@@ -9,9 +9,12 @@ import Foundation
 
 class TeamListViewModel {
     
+    // Team list
     var teamList: [TeamData] = []
-    
+    // Filtered team list
     var filteredTeams: [TeamData] = []
+    // Current page
+    private var currentTeamsPage: Int = 1
     
     // Team repository to handle data
     private let teamRepository: TeamRepository
@@ -20,8 +23,9 @@ class TeamListViewModel {
         self.teamRepository = teamRepository
     }
     
+    // This call is not paginating! The api has max page = 1
     func retrieveAllTeams(completionHandler: @escaping (_ error: ErrorStructure?) -> Void) {
-        self.teamRepository.retrieveTeams(currentPage: 0) { (response) in
+        self.teamRepository.retrieveTeams(currentPage: self.currentTeamsPage) { (response) in
             switch response {
             case .success(let teams):
                 print("Success")
@@ -45,7 +49,8 @@ class TeamListViewModel {
                 teamId: team.id,
                 teamFullName: team.fullName,
                 division: team.division,
-                conference: team.conference
+                conference: team.conference,
+                city: team.city
             )
             self.teamList.append(teamData)
         }

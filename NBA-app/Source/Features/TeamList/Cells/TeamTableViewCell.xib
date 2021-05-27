@@ -94,7 +94,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="abbreviationLabel" destination="E5C-Su-65T" id="Cdz-mh-Z9u"/>
+                <outlet property="cityLabel" destination="E5C-Su-65T" id="6JK-y7-4zv"/>
                 <outlet property="conferenceLabel" destination="PnV-wQ-JrG" id="YCt-6y-17R"/>
                 <outlet property="divisionLabel" destination="RXD-jR-aJA" id="R7m-W7-J50"/>
                 <outlet property="teamName" destination="hlO-EP-VSI" id="BVu-T4-Ivv"/>

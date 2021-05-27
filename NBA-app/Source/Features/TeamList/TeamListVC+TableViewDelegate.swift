@@ -39,7 +39,7 @@ extension TeamListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-                
+        
         let teamList: [TeamData] = isFiltering ? self.viewModel.filteredTeams : self.viewModel.teamList
         
         switch teamStatus {
@@ -79,7 +79,7 @@ extension TeamListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Team list
-//        let teamList: [TeamData] = isFiltering ? self.viewModel.filteredTeams : self.viewModel.teamList
+        //        let teamList: [TeamData] = isFiltering ? self.viewModel.filteredTeams : self.viewModel.teamList
         switch teamStatus {
         case .ready:
             print("Cell tapped")

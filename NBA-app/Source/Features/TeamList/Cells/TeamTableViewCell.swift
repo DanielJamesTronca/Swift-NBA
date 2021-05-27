@@ -15,7 +15,7 @@ class TeamTableViewCell: UITableViewCell {
     
     @IBOutlet weak var divisionLabel: UILabel!
     @IBOutlet weak var conferenceLabel: UILabel!
-    @IBOutlet weak var abbreviationLabel: UILabel!
+    @IBOutlet weak var cityLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,6 +27,7 @@ class TeamTableViewCell: UITableViewCell {
         self.teamName.text = data.teamFullName
         self.divisionLabel.text = data.division
         self.conferenceLabel.text = data.conference
+        self.cityLabel.text = data.city
     }
     
     // Private func to setup UI, font, size, colors...
@@ -44,19 +45,19 @@ class TeamTableViewCell: UITableViewCell {
         self.conferenceLabel.textColor = UIColor.nbaTextColor?.withAlphaComponent(0.5)
         
         // Team abbreviation setup
-        self.abbreviationLabel.font = UIFont.systemFont(ofSize: 12, weight: .regular)
-        self.abbreviationLabel.textColor = UIColor.nbaTextColor?.withAlphaComponent(0.5)
+        self.cityLabel.font = UIFont.systemFont(ofSize: 12, weight: .regular)
+        self.cityLabel.textColor = UIColor.nbaTextColor?.withAlphaComponent(0.5)
         
         let imagesName: [String] = [
-            "circles.hexagonpath",
-            "circles.hexagonpath",
-            "circles.hexagonpath"
+            "rectangle.3.offgrid",
+            "paperplane",
+            "globe"
         ]
         
         for (informationImage, imageName) in zip(informationImages, imagesName) {
             let image: UIImage = UIImage(systemName: imageName)!
             informationImage.image = image
-            informationImage.tintColor = UIColor.nbaTextColor?.withAlphaComponent(0.75)
+            informationImage.tintColor = UIColor.nbaTextColor?.withAlphaComponent(0.5)
         }
     }
     

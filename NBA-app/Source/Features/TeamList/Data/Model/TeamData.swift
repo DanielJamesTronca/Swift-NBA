@@ -12,11 +12,13 @@ class TeamData {
     let teamFullName: String
     let division: String
     let conference: String
+    let city: String
     
-    init(teamId: Int, teamFullName: String, division: String, conference: String) {
+    init(teamId: Int, teamFullName: String, division: String, conference: String, city: String) {
         self.teamId = teamId
         self.teamFullName = teamFullName
         self.division = division
         self.conference = conference
+        self.city = city
     }
 }

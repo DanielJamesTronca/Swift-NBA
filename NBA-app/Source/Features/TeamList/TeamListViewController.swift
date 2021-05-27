@@ -55,6 +55,7 @@ class TeamListViewController: UIViewController {
         self.configureSearchController()
         // Current view title
         self.title = "nba_teams_title".localized
+        navigationController?.navigationBar.prefersLargeTitles = true
         self.view.backgroundColor = UIColor.nbaDark
     }
     
@@ -139,5 +140,4 @@ class TeamListViewController: UIViewController {
             tableView.topAnchor.constraint(equalTo: view.topAnchor)
         ])
     }
-
 }

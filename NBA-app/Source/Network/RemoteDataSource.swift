@@ -16,9 +16,6 @@ class RemoteDataSource {
     // We can improve this with Alamofire
     func execute<T: Decodable>(_ endpoint: String, requestType: HTTPMethodEnum, completion: @escaping (Result<T, Error>) -> Void) {
         
-        // Fill urlstring with endpoint
-        //        let urlString: String = "https://api.punkapi.com/v2\(endpoint)"
-        
         let headers: [String:String] = [
             "x-rapidapi-key": "32799daa0dmsh5605c4a71af5876p174602jsnaa555ac3ba30",
             "x-rapidapi-host": "free-nba.p.rapidapi.com"
