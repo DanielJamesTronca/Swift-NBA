@@ -28,7 +28,7 @@ class EmptyTeamsTableViewCell: UITableViewCell {
         // No data label setup
         self.emptyLabel.font = UIFont.systemFont(ofSize: 15, weight: .bold)
         self.emptyLabel.textColor = UIColor.blue.withAlphaComponent(0.5)
-        self.emptyLabel.text = "no_data_title_label"
+        self.emptyLabel.text = "no_data_title_label".localized
         
         // No data image setup
         let noDataImage: UIImage = UIImage(systemName: "doc.append.fill")!

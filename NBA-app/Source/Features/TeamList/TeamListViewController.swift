@@ -52,8 +52,10 @@ class TeamListViewController: UIViewController {
         // Do any additional setup after loading the view.
         self.configureTableView()
         self.setupConstraints()
+        self.configureSearchController()
         // Current view title
         self.title = "nba_teams_title".localized
+        self.view.backgroundColor = UIColor.nbaDark
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -103,8 +105,8 @@ class TeamListViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = UIColor.nbaDark
         // We can set custom row height because all of cell respect the same size.
-        tableView.rowHeight = MarginManager.extraLargeMargin * 2
-        tableView.estimatedRowHeight = MarginManager.extraLargeMargin * 2
+        tableView.rowHeight = 85
+        tableView.estimatedRowHeight = 85
         // Different cells type, so we can register them!
         let cells: [UITableViewCell.Type] = [
             EmptyTeamsTableViewCell.self,
@@ -115,6 +117,16 @@ class TeamListViewController: UIViewController {
         cells.forEach {
             tableView.registerCell(type: $0)
         }
+    }
+    
+    private func configureSearchController() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "search_teams_searchbar".localized
+//        tableView.tableHeaderView = searchController.searchBar
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
+        searchController.searchBar.isTranslucent = true
     }
     
     private func setupConstraints() {

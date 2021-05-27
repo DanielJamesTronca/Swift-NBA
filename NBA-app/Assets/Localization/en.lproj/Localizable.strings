@@ -10,3 +10,6 @@
 "generic_error_title" = "An error occurred";
 "generic_error_description" = "Something went wrong during network call. I'm sorry 😭";
 "nba_teams_title" = "NBA Teams";
+"generic_loading_title" = "Loading...";
+"no_data_title_label" = "Unfortunatly there is no data!";
+"search_teams_searchbar" = "Search teams...";

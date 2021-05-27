@@ -26,7 +26,7 @@ class LoadingTeamsTableViewCell: UITableViewCell {
     
     private func setupUI() {
         // Loading label setup
-        self.loadingLabel.text = "generic_loading_title"
+        self.loadingLabel.text = "generic_loading_title".localized
         self.loadingLabel.textColor = UIColor.red
         self.loadingLabel.font = UIFont.systemFont(ofSize: 15, weight: .regular)
 

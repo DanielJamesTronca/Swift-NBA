@@ -71,6 +71,7 @@ extension TeamListViewController: UITableViewDelegate, UITableViewDataSource {
                 }
                 // Remove selection style
                 cell.selectionStyle = .none
+                cell.configure(with: teamList[indexPath.row])
                 return cell
             }
         }
@@ -79,7 +80,6 @@ extension TeamListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Team list
 //        let teamList: [TeamData] = isFiltering ? self.viewModel.filteredTeams : self.viewModel.teamList
-        
         switch teamStatus {
         case .ready:
             print("Cell tapped")
@@ -90,6 +90,6 @@ extension TeamListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         // Set background color for cells.
-        cell.backgroundColor = UIColor.red
+        cell.backgroundColor = UIColor.nbaDark
     }
 }

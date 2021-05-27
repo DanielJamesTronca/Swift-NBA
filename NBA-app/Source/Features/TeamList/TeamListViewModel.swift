@@ -25,6 +25,9 @@ class TeamListViewModel {
             switch response {
             case .success(let teams):
                 print("Success")
+                if !teams.data.isEmpty {
+                    self.mapJsonToTeamData(from: teams)
+                }
                 completionHandler(nil)
             case .failure(let error):
                 print(error.localizedDescription)
@@ -40,7 +43,9 @@ class TeamListViewModel {
         json.data.forEach { (team) in
             let teamData: TeamData = TeamData(
                 teamId: team.id,
-                teamFullName: team.fullName
+                teamFullName: team.fullName,
+                division: team.division,
+                conference: team.conference
             )
             self.teamList.append(teamData)
         }

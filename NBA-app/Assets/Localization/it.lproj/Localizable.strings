@@ -10,3 +10,6 @@
 "generic_error_title" = "Si è verificato un errore!";
 "generic_error_description" = "Qualcosa è andato storto durante la chiamata newtork. Mi dispiace 😭";
 "nba_teams_title" = "Squadre NBA";
+"generic_loading_title" = "Caricamento...";
+"no_data_title_label" = "Sfortunatamente non c'è nessun dato!";
+"search_teams_searchbar" = "Cerca squadra...";
