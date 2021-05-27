@@ -8,5 +8,5 @@
 import Foundation
 
 protocol OnboardingRepository {
-    func retrievePlayers(currentPage: Int, _ completion: @escaping (Result<PlayersJSONResponse, Error>) -> Void) 
+    func retrievePlayers(currentPage: Int, pageLimit: Int, _ completion: @escaping (Result<PlayersJSONResponse, Error>) -> Void) 
 }

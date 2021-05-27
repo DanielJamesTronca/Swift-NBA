@@ -1,0 +1,12 @@
+/* 
+  Localizable.strings
+  NBA-app
+
+  Created by Daniel James Tronca on 27/05/21.
+  
+*/
+
+"generic_gotcha" = "Got it";
+"generic_error_title" = "An error occurred";
+"generic_error_description" = "Something went wrong during network call. I'm sorry 😭";
+"nba_teams_title" = "NBA Teams";

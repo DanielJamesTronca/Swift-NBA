@@ -8,8 +8,8 @@
 import Foundation
 
 class OnboardingRepositoryImpl: OnboardingRepository {
-    func retrievePlayers(currentPage: Int, _ completion: @escaping (Result<PlayersJSONResponse, Error>) -> Void) {
-        let urlString: String = "https://free-nba.p.rapidapi.com/players?per_page=100&page=\(currentPage)"
+    func retrievePlayers(currentPage: Int, pageLimit: Int, _ completion: @escaping (Result<PlayersJSONResponse, Error>) -> Void) {
+        let urlString: String = "https://free-nba.p.rapidapi.com/players?per_page=\(pageLimit)&page=\(currentPage)"
         RemoteDataSource.shared.execute(urlString, requestType: .get, completion: completion)
     }
 }

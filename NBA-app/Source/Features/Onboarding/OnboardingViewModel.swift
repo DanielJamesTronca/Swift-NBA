@@ -11,6 +11,8 @@ import UIKit
 
 class OnboardingViewModel {
     
+    private var pageLimit: Int = 100
+    
     // Beer repository to handle data
     private let onboardingRepository: OnboardingRepository
     // Beer repository initialization
@@ -19,7 +21,7 @@ class OnboardingViewModel {
     }
     
     func retrieveAllPlayers(currentPage: Int, completionHandler: @escaping (Bool) -> Void) {
-        self.onboardingRepository.retrievePlayers(currentPage: currentPage) { (response) in
+        self.onboardingRepository.retrievePlayers(currentPage: currentPage, pageLimit: self.pageLimit) { (response) in
             switch response {
             case .success(let players):
                 players.data.forEach { (player) in
