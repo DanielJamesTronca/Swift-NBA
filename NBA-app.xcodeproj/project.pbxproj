@@ -93,6 +93,37 @@
 			path = Assets;
 			sourceTree = "<group>";
 		};
+		34707BEC265FE8FD00F8EA86 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				34707BEF265FE91500F8EA86 /* PlayerDetail */,
+				34707BEE265FE90E00F8EA86 /* PlayerList */,
+				34707BED265FE90800F8EA86 /* TeamList */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		34707BED265FE90800F8EA86 /* TeamList */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TeamList;
+			sourceTree = "<group>";
+		};
+		34707BEE265FE90E00F8EA86 /* PlayerList */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PlayerList;
+			sourceTree = "<group>";
+		};
+		34707BEF265FE91500F8EA86 /* PlayerDetail */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PlayerDetail;
+			sourceTree = "<group>";
+		};
 		34822617265FE60A0081284B = {
 			isa = PBXGroup;
 			children = (
@@ -119,6 +150,7 @@
 				34822631265FE60B0081284B /* Info.plist */,
 				34707BEB265FE8B700F8EA86 /* Assets */,
 				34707BE7265FE8B000F8EA86 /* App */,
+				34707BEC265FE8FD00F8EA86 /* Features */,
 				34822627265FE60A0081284B /* ViewController.swift */,
 				34822629265FE60A0081284B /* Main.storyboard */,
 				3482262E265FE60B0081284B /* LaunchScreen.storyboard */,
