@@ -32,6 +32,7 @@ class PlayerListViewController: UITableViewController {
             fetchRequest.predicate = NSPredicate(format: "teamId == %d", argumentArray: [teamId])
         }
         
+        // Important!!
         fetchRequest.sortDescriptors = [sort]
         
         let fetchedResultsController = NSFetchedResultsController(

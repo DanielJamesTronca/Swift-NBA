@@ -23,26 +23,7 @@ class OnboardingViewModel {
         self.coreDataStack = coreDataStack
     }
     
-    func retrieveBigBatchOfPlayers(completionHandler: @escaping (Bool) -> Void) {
-        let dispatchGroup: DispatchGroup = DispatchGroup()
-        // We know there are almost 35 pages.
-        // For the time being we retrieve data from the first 20.
-        // We can improve this solution by getting this data run-time.
-        for i in 1 ..< 21 {
-            dispatchGroup.enter()
-            self.retrieveAllPlayers(currentPage: i, completionHandler: { (success) in
-                if success {
-                    dispatchGroup.leave()
-                }
-            })
-        }
-        dispatchGroup.notify(queue: .main) {
-            print("Finished all requests!")
-            completionHandler(true)
-        }
-    }
-    
-    private func retrieveAllPlayers(currentPage: Int, completionHandler: @escaping (Bool) -> Void) {
+    func retrieveAllPlayers(currentPage: Int, completionHandler: @escaping (Bool) -> Void) {
         self.onboardingRepository.retrievePlayers(currentPage: currentPage, pageLimit: self.pageLimit) { (response) in
             switch response {
             case .success(let players):

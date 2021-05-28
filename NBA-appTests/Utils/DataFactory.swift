@@ -53,7 +53,7 @@ class DataFactory {
                 )
             ]
         )
-        // For the time being we use completion to conform to our network call
+        // For the time being we use completion to conform to network call
         completion(.success(teamData))
     }
 }

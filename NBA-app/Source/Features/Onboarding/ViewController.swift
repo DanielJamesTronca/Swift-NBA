@@ -53,11 +53,7 @@ class ViewController: UIViewController {
         // We can improve this solution by getting this data run-time.
         if self.getRecordsCount() <= 2000 {
             setupConstraints()
-            self.viewModel?.retrieveBigBatchOfPlayers(completionHandler: { (success) in
-                if success {
-                    self.setRootViewController()
-                }
-            })
+            self.retrieveBigBatchOfPlayers()
         } else {
             setRootViewController()
         }
@@ -98,6 +94,25 @@ class ViewController: UIViewController {
                     circle.frame.origin.y += 30
                 }
             })
+        }
+    }
+    
+    private func retrieveBigBatchOfPlayers() {
+        let dispatchGroup: DispatchGroup = DispatchGroup()
+        // We know there are almost 35 pages.
+        // For the time being we retrieve data from the first 20.
+        // We can improve this solution by getting this data run-time.
+        for i in 1 ..< 25 {
+            dispatchGroup.enter()
+            self.viewModel?.retrieveAllPlayers(currentPage: i, completionHandler: { (success) in
+                if success {
+                    dispatchGroup.leave()
+                }
+            })
+        }
+        dispatchGroup.notify(queue: .main) {
+            print("Finished all requests!")
+            self.setRootViewController()
         }
     }
     
