@@ -9,6 +9,7 @@ import Foundation
 import CoreData
 
 class CoreDataStack {
+    
     private let modelName: String
     
     init(modelName: String) {

@@ -58,7 +58,7 @@ class TeamListViewController: UIViewController {
         self.configureSearchController()
         // Current view title
         self.title = "nba_teams_title".localized
-//        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.prefersLargeTitles = true
         self.view.backgroundColor = UIColor.nbaDark
         self.retrieveData()
     }
@@ -105,8 +105,8 @@ class TeamListViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = UIColor.nbaDark
         // We can set custom row height because all of cell respect the same size.
-        tableView.rowHeight = 85
-        tableView.estimatedRowHeight = 85
+        tableView.rowHeight = MarginManager.largeMargin * 2
+        tableView.estimatedRowHeight = MarginManager.largeMargin * 2
         // Different cells type, so we can register them!
         let cells: [UITableViewCell.Type] = [
             EmptyTeamsTableViewCell.self,

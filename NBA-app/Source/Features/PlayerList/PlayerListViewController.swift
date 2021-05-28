@@ -10,16 +10,20 @@ import CoreData
 
 class PlayerListViewController: UITableViewController {
     
-    var teamId: Int?
+    var teamData: TeamData?
     var coreDataStack: CoreDataStack!
     
     var dataSource: UITableViewDiffableDataSource<String, NSManagedObjectID>?
     
+    let searchController: UISearchController = UISearchController(
+        searchResultsController: nil
+    )
+    
     lazy var fetchedResultsController: NSFetchedResultsController<PlayerCoreDataClass> = {
         let fetchRequest: NSFetchRequest<PlayerCoreDataClass> = PlayerCoreDataClass.fetchRequest()
-        let sort = NSSortDescriptor(key: #keyPath(PlayerCoreDataClass.playerId), ascending: true)
+        let sort = NSSortDescriptor(key: #keyPath(PlayerCoreDataClass.completeName), ascending: true)
         
-        if let teamId = self.teamId {
+        if let teamId = self.teamData?.teamId {
             fetchRequest.predicate = NSPredicate(format: "teamId == %d", argumentArray: [teamId])
         }
         
@@ -36,6 +40,8 @@ class PlayerListViewController: UITableViewController {
         return fetchedResultsController
     }()
     
+    var filteredData: [PlayerCoreDataClass] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -45,18 +51,25 @@ class PlayerListViewController: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
-        UIView.performWithoutAnimation {
-            do {
-                try fetchedResultsController.performFetch()
-            } catch let error as NSError {
-                print("Fetching error: \(error), \(error.userInfo)")
+        self.retrieveData { (success) in
+            if success,
+               let teamAbbreviation = self.teamData?.teamAbbreviation,
+               let playerCount = self.fetchedResultsController.fetchedObjects?.count {
+                self.navigationItem.title = "\(teamAbbreviation) (\(playerCount))"
             }
         }
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+    fileprivate func retrieveData(completionHandler: @escaping (_ success: Bool) -> Void) {
+        UIView.performWithoutAnimation {
+            do {
+                try fetchedResultsController.performFetch()
+                completionHandler(true)
+            } catch let error as NSError {
+                completionHandler(false)
+                print("Fetching error: \(error), \(error.userInfo)")
+            }
+        }
     }
 }
 
@@ -73,6 +86,10 @@ extension PlayerListViewController {
     func configure(cell: UITableViewCell, for player: PlayerCoreDataClass) {
         cell.textLabel?.text = player.completeName
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
 
 // MARK: - NSFetchedResultsControllerDelegate
@@ -82,6 +99,6 @@ extension PlayerListViewController: NSFetchedResultsControllerDelegate {
         didChangeContentWith snapshot: NSDiffableDataSourceSnapshotReference
     ) {
         let snapshot = snapshot as NSDiffableDataSourceSnapshot<String, NSManagedObjectID>
-        dataSource?.apply(snapshot)
+        dataSource?.apply(snapshot, animatingDifferences: true)
     }
 }

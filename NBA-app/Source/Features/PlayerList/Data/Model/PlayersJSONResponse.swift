@@ -10,7 +10,7 @@ import Foundation
 // MARK: - PlayersData
 struct PlayersJSONResponse: Codable {
     let data: [Datum]
-    //    let meta: Meta
+    let meta: Meta
 }
 
 // MARK: - Datum
@@ -41,15 +41,15 @@ struct Team: Codable {
 }
 
 // MARK: - Meta
-//struct Meta: Codable {
-//    let totalPages, currentPage, nextPage, perPage: Int
-//    let totalCount: Int
-//
-//    enum CodingKeys: String, CodingKey {
-//        case totalPages = "total_pages"
-//        case currentPage = "current_page"
-//        case nextPage = "next_page"
-//        case perPage = "per_page"
-//        case totalCount = "total_count"
-//    }
-//}
+struct Meta: Codable {
+    let totalPages, currentPage, nextPage, perPage: Int
+    let totalCount: Int
+
+    enum CodingKeys: String, CodingKey {
+        case totalPages = "total_pages"
+        case currentPage = "current_page"
+        case nextPage = "next_page"
+        case perPage = "per_page"
+        case totalCount = "total_count"
+    }
+}

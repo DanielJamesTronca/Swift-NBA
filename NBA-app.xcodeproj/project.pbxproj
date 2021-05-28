@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3424B14C2660E60F00D68608 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3424B14B2660E60F00D68608 /* CoreDataStack.swift */; };
-		346ED9182660E75100EA1D8B /* PlayerCoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346ED9172660E75100EA1D8B /* PlayerCoreDataClass.swift */; };
-		346ED9262660E78F00EA1D8B /* PlayerCoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346ED9252660E78F00EA1D8B /* PlayerCoreDataProperties.swift */; };
 		346ED9342660E8FD00EA1D8B /* PlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346ED9332660E8FD00EA1D8B /* PlayerService.swift */; };
 		34707BF1265FE9C900F8EA86 /* TeamListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34707BF0265FE9C900F8EA86 /* TeamListViewModel.swift */; };
 		34707BF7265FEA6F00F8EA86 /* RemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34707BF6265FEA6F00F8EA86 /* RemoteDataSource.swift */; };
@@ -75,8 +73,6 @@
 
 /* Begin PBXFileReference section */
 		3424B14B2660E60F00D68608 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
-		346ED9172660E75100EA1D8B /* PlayerCoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCoreDataClass.swift; sourceTree = "<group>"; };
-		346ED9252660E78F00EA1D8B /* PlayerCoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerCoreDataProperties.swift; sourceTree = "<group>"; };
 		346ED9332660E8FD00EA1D8B /* PlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerService.swift; sourceTree = "<group>"; };
 		34707BF0265FE9C900F8EA86 /* TeamListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListViewModel.swift; sourceTree = "<group>"; };
 		34707BF6265FEA6F00F8EA86 /* RemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataSource.swift; sourceTree = "<group>"; };
@@ -162,8 +158,6 @@
 			children = (
 				34707C09265FF31F00F8EA86 /* NBAPlayers.xcdatamodeld */,
 				3424B14B2660E60F00D68608 /* CoreDataStack.swift */,
-				346ED9172660E75100EA1D8B /* PlayerCoreDataClass.swift */,
-				346ED9252660E78F00EA1D8B /* PlayerCoreDataProperties.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -566,8 +560,6 @@
 				346ED9342660E8FD00EA1D8B /* PlayerService.swift in Sources */,
 				34C90E52266014140013A7ED /* TeamStatusEnum.swift in Sources */,
 				34822628265FE60A0081284B /* ViewController.swift in Sources */,
-				346ED9182660E75100EA1D8B /* PlayerCoreDataClass.swift in Sources */,
-				346ED9262660E78F00EA1D8B /* PlayerCoreDataProperties.swift in Sources */,
 				34A75CAD2660118900B321A6 /* MarginManager.swift in Sources */,
 				34C90E74266023880013A7ED /* TeamRepositoryImpl.swift in Sources */,
 				34C90E792660244F0013A7ED /* TeamJSONResponse.swift in Sources */,
