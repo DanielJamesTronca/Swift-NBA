@@ -10,20 +10,22 @@ import UIKit
 
 class PlayerDetailViewController: UIViewController {
     
-    // Main UIView (with custom rounded corners)
+    /// Main UIView (with custom rounded corners)
     @IBOutlet var mainView: UIView!
-    // Player image view (fake for the time being)
+    /// Player image view (fake for the time being)
     @IBOutlet weak var playerImageView: UIImageView!
-    // Player name label
+    /// Player name label
     @IBOutlet weak var playerName: UILabel!
-    // Player team label
+    /// Player team label
     @IBOutlet weak var playerTeam: UILabel!
-    // Player position label
+    /// Player position label
     @IBOutlet weak var playerPosition: UILabel!
-    // XMark button to help close view controller
+    /// XMark button to help close view controller
     @IBOutlet weak var xmarkButton: UIButton!
-    // Fake action button
+    /// Fake action button
     @IBOutlet weak var fakeActionButton: UIButton!
+    /// Images information outlet collection
+    @IBOutlet var imagesInformation: [UIImageView]!
     
     // Player data from previous view
     var playerData: PlayerCoreDataClass? {
@@ -46,12 +48,12 @@ class PlayerDetailViewController: UIViewController {
     
     private func configureView() {
         guard let playerData = playerData else { return }
-        playerName.text = "Name: \(playerData.completeName ?? "")"
-        playerTeam.text = "Team: \(playerData.teamFullName ?? "")"
+        playerName.text = playerData.completeName
+        playerTeam.text = playerData.teamFullName
         if let position = playerData.position, !position.isEmpty {
-            playerPosition.text = "Position: \(position)"
+            playerPosition.text = position
         } else {
-            playerPosition.text = "None"
+            playerPosition.text = "Pos: none"
         }
     }
     
@@ -106,5 +108,19 @@ class PlayerDetailViewController: UIViewController {
         // Player name setup
         self.playerPosition.font = UIFont.systemFont(ofSize: 15, weight: .bold)
         self.playerPosition.textColor = UIColor.nbaTextColor
+        
+        // Array of images for cell information
+        let imagesName: [String] = [
+            "person.crop.square.fill",
+            "flag.fill",
+            "pin.fill"
+        ]
+        
+        // Set images in Outlet collection
+        for (imageInformation, imageName) in zip(imagesInformation, imagesName) {
+            let image: UIImage = UIImage(systemName: imageName)!
+            imageInformation.image = image
+            imageInformation.tintColor = UIColor.nbaTextColor?.withAlphaComponent(0.5)
+        }
     }
 }
