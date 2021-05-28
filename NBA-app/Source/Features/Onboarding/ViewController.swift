@@ -60,6 +60,7 @@ class ViewController: UIViewController {
     }
     
     private func setupConstraints() {
+        // Configure loading view
         view.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
@@ -84,7 +85,7 @@ class ViewController: UIViewController {
         let fallRelativeTime: Double = (delayDuration + jumpDuration) / totalDuration
 
         for (index, circle) in circles.enumerated() {
-            let delay = jumpDuration*2 * TimeInterval(index) / TimeInterval(circles.count)
+            let delay = jumpDuration * 2 * TimeInterval(index) / TimeInterval(circles.count)
             UIView.animateKeyframes(withDuration: totalDuration, delay: delay, options: [.repeat], animations: {
                 UIView.addKeyframe(withRelativeStartTime: jumpRelativeTime, relativeDuration: jumpRelativeDuration) {
                     circle.frame.origin.y -= 30

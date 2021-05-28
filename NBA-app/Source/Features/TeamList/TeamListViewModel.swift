@@ -17,9 +17,6 @@ class TeamListViewModel {
     var filteredTeams: [TeamData] = []
     // Current page
     private var currentTeamsPage: Int = 1
-    
-    var player: [NSManagedObject] = []
-
     // Team repository to handle data
     private let teamRepository: TeamRepository
     // Team repository initialization

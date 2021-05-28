@@ -9,8 +9,9 @@ import UIKit
 
 class EmptyTeamsTableViewCell: UITableViewCell {
 
-    // Empty image
+    // Empty image view
     @IBOutlet weak var emptyImage: UIImageView!
+    // Empty label
     @IBOutlet weak var emptyLabel: UILabel!
     
     override func awakeFromNib() {
@@ -21,7 +22,6 @@ class EmptyTeamsTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     

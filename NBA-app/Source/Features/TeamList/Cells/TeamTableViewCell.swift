@@ -48,12 +48,14 @@ class TeamTableViewCell: UITableViewCell {
         self.cityLabel.font = UIFont.systemFont(ofSize: 12, weight: .regular)
         self.cityLabel.textColor = UIColor.nbaTextColor?.withAlphaComponent(0.5)
         
+        // Array of images for cell information
         let imagesName: [String] = [
             "rectangle.3.offgrid",
             "paperplane",
             "globe"
         ]
         
+        // Set images in Outlet collection
         for (informationImage, imageName) in zip(informationImages, imagesName) {
             let image: UIImage = UIImage(systemName: imageName)!
             informationImage.image = image

@@ -10,6 +10,9 @@ import CoreData
 
 class TeamListViewController: UIViewController {
 
+    // MARK: - View var -
+    
+    // Search controller
     let searchController: UISearchController = UISearchController(
         searchResultsController: nil
     )
@@ -44,10 +47,13 @@ class TeamListViewController: UIViewController {
         return searchController.isActive && !isSearchBarEmpty
     }
     
+    // Current team loading status
     var teamStatus: TeamStatusEnum = .loading
     
+    // View model
     var viewModel: TeamListViewModel = TeamListViewModel(teamRepository: TeamRepositoryImpl())
         
+    // Core data stack to perform actions
     var coreDataStack: CoreDataStack!
     
     override func viewDidLoad() {
@@ -56,10 +62,11 @@ class TeamListViewController: UIViewController {
         self.configureTableView()
         self.setupConstraints()
         self.configureSearchController()
-        // Current view title
+        // Current view configuration
         self.title = "nba_teams_title".localized
         navigationController?.navigationBar.prefersLargeTitles = true
         self.view.backgroundColor = UIColor.nbaDark
+        // Retrieve data
         self.retrieveData()
     }
     

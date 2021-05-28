@@ -10,22 +10,24 @@ import CoreData
 
 class PlayerListViewController: UITableViewController {
     
+    // Team data from previous view controller
     var teamData: TeamData?
+    
+    // Core data stack to perform Core Data actions
     var coreDataStack: CoreDataStack!
     
+    // UITablew view diffable data source
     var dataSource: UITableViewDiffableDataSource<String, NSManagedObjectID>?
-    
-    let searchController: UISearchController = UISearchController(
-        searchResultsController: nil
-    )
     
     // Delegate to handle transictions through detail view
     var detailsTransitioningDelegate: InteractiveModalTransitioningDelegate!
     
+    // FetcResultController to perform core data actions
     lazy var fetchedResultsController: NSFetchedResultsController<PlayerCoreDataClass> = {
         let fetchRequest: NSFetchRequest<PlayerCoreDataClass> = PlayerCoreDataClass.fetchRequest()
         let sort = NSSortDescriptor(key: #keyPath(PlayerCoreDataClass.completeName), ascending: true)
         
+        // Filter by team id
         if let teamId = self.teamData?.teamId {
             fetchRequest.predicate = NSPredicate(format: "teamId == %d", argumentArray: [teamId])
         }
@@ -42,14 +44,14 @@ class PlayerListViewController: UITableViewController {
         fetchedResultsController.delegate = self
         return fetchedResultsController
     }()
-    
-    var filteredData: [PlayerCoreDataClass] = []
-    
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         dataSource = setupDataSource()
+        // Current view configuration
         self.tableView.tableFooterView = UIView()
+        self.view.backgroundColor = UIColor.nbaDark
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
     }
     
@@ -77,48 +79,5 @@ class PlayerListViewController: UITableViewController {
                 print("Fetching error: \(error), \(error.userInfo)")
             }
         }
-    }
-}
-
-extension PlayerListViewController {
-    func setupDataSource() -> UITableViewDiffableDataSource<String, NSManagedObjectID> {
-        UITableViewDiffableDataSource(tableView: tableView) { [unowned self] tableView, indexPath, _ in
-            let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerName", for: indexPath)
-            let player = self.fetchedResultsController.object(at: indexPath)
-            self.configure(cell: cell, for: player)
-            return cell
-        }
-    }
-    
-    func configure(cell: UITableViewCell, for player: PlayerCoreDataClass) {
-        cell.textLabel?.text = player.completeName
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        let controller: PlayerDetailViewController = PlayerDetailViewController(
-            nibName: "PlayerDetailViewController",
-            bundle: nil
-        )
-        detailsTransitioningDelegate = InteractiveModalTransitioningDelegate(from: self, to: controller)
-        controller.modalPresentationStyle = .custom
-        controller.transitioningDelegate = detailsTransitioningDelegate
-        controller.playerData = self.fetchedResultsController.object(at: indexPath)
-        present(
-            controller,
-            animated: true,
-            completion: nil
-        )
-    }
-}
-
-// MARK: - NSFetchedResultsControllerDelegate
-extension PlayerListViewController: NSFetchedResultsControllerDelegate {
-    func controller(
-        _ controller: NSFetchedResultsController<NSFetchRequestResult>,
-        didChangeContentWith snapshot: NSDiffableDataSourceSnapshotReference
-    ) {
-        let snapshot = snapshot as NSDiffableDataSourceSnapshot<String, NSManagedObjectID>
-        dataSource?.apply(snapshot, animatingDifferences: true)
     }
 }

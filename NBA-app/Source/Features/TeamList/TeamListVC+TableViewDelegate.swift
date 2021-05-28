@@ -87,8 +87,6 @@ extension TeamListViewController: UITableViewDelegate, UITableViewDataSource {
             guard let vc = UIStoryboard(name: "PlayerList", bundle: nil).instantiateViewController(identifier: "PlayerListViewController") as? PlayerListViewController else {
                 return
             }
-//            let teamId: Int = teamList[indexPath.row].teamId
-//            vc.playerList = self.viewModel.retrievePlayers(teamId: teamId)
             vc.coreDataStack = self.coreDataStack
             vc.teamData = teamList[indexPath.row]
             self.navigationController?.pushViewController(vc, animated: true)

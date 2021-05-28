@@ -10,14 +10,22 @@ import UIKit
 
 class PlayerDetailViewController: UIViewController {
     
+    // Main UIView (with custom rounded corners)
     @IBOutlet var mainView: UIView!
+    // Player image view (fake for the time being)
     @IBOutlet weak var playerImageView: UIImageView!
+    // Player name label
     @IBOutlet weak var playerName: UILabel!
+    // Player team label
     @IBOutlet weak var playerTeam: UILabel!
+    // Player position label
     @IBOutlet weak var playerPosition: UILabel!
+    // XMark button to help close view controller
     @IBOutlet weak var xmarkButton: UIButton!
+    // Fake action button
     @IBOutlet weak var fakeActionButton: UIButton!
     
+    // Player data from previous view
     var playerData: PlayerCoreDataClass? {
         didSet {
             guard playerData != nil else {

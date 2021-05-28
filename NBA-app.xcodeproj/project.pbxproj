@@ -57,6 +57,8 @@
 		34E0183B2661302E00B9F1EA /* InteractiveModalTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E0183A2661302E00B9F1EA /* InteractiveModalTransitioningDelegate.swift */; };
 		34E018402661305D00B9F1EA /* ModalScaleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E0183F2661305D00B9F1EA /* ModalScaleState.swift */; };
 		34E0184D266130C900B9F1EA /* PlayerDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34E0184C266130C900B9F1EA /* PlayerDetailViewController.xib */; };
+		34E01855266142DC00B9F1EA /* PlayerListVC+NSFetchedResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E01854266142DC00B9F1EA /* PlayerListVC+NSFetchedResults.swift */; };
+		34E0185A2661430F00B9F1EA /* PlayerListVC+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E018592661430F00B9F1EA /* PlayerListVC+TableViewDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,6 +138,8 @@
 		34E0183A2661302E00B9F1EA /* InteractiveModalTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveModalTransitioningDelegate.swift; sourceTree = "<group>"; };
 		34E0183F2661305D00B9F1EA /* ModalScaleState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalScaleState.swift; sourceTree = "<group>"; };
 		34E0184C266130C900B9F1EA /* PlayerDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerDetailViewController.xib; sourceTree = "<group>"; };
+		34E01854266142DC00B9F1EA /* PlayerListVC+NSFetchedResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayerListVC+NSFetchedResults.swift"; sourceTree = "<group>"; };
+		34E018592661430F00B9F1EA /* PlayerListVC+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayerListVC+TableViewDelegate.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,10 +231,11 @@
 		34707BEE265FE90E00F8EA86 /* PlayerList */ = {
 			isa = PBXGroup;
 			children = (
-				34A75CB92660124800B321A6 /* Cells */,
 				34A75C68265FF5E300B321A6 /* Data */,
 				34A75CC7266012EC00B321A6 /* PlayerListViewModel.swift */,
 				34A75C97265FFC4900B321A6 /* PlayerListViewController.swift */,
+				34E01854266142DC00B9F1EA /* PlayerListVC+NSFetchedResults.swift */,
+				34E018592661430F00B9F1EA /* PlayerListVC+TableViewDelegate.swift */,
 				34A75C9C265FFC8000B321A6 /* PlayerList.storyboard */,
 			);
 			path = PlayerList;
@@ -383,13 +388,6 @@
 				34C90EBC26603D460013A7ED /* StringExtensions.swift */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		34A75CB92660124800B321A6 /* Cells */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Cells;
 			sourceTree = "<group>";
 		};
 		34C90E4B266013F20013A7ED /* Data */ = {
@@ -599,6 +597,7 @@
 				34E0182E2661301100B9F1EA /* PlayerDetailViewController.swift in Sources */,
 				34A75CB5266011A000B321A6 /* UITableViewExtensions.swift in Sources */,
 				34C90E6F2660237D0013A7ED /* TeamRepository.swift in Sources */,
+				34E0185A2661430F00B9F1EA /* PlayerListVC+TableViewDelegate.swift in Sources */,
 				34C90E69266014BA0013A7ED /* TeamTableViewCell.swift in Sources */,
 				34A75C70265FF61C00B321A6 /* PlayersData.swift in Sources */,
 				34E0183B2661302E00B9F1EA /* InteractiveModalTransitioningDelegate.swift in Sources */,
@@ -616,6 +615,7 @@
 				34822624265FE60A0081284B /* AppDelegate.swift in Sources */,
 				34A75CCD2660132600B321A6 /* TeamListVC+TableViewDelegate.swift in Sources */,
 				34A75C6B265FF5F600B321A6 /* PlayersJSONResponse.swift in Sources */,
+				34E01855266142DC00B9F1EA /* PlayerListVC+NSFetchedResults.swift in Sources */,
 				34822626265FE60A0081284B /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
