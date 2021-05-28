@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 extension TeamListViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -79,10 +80,18 @@ extension TeamListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Team list
-        //        let teamList: [TeamData] = isFiltering ? self.viewModel.filteredTeams : self.viewModel.teamList
+        let teamList: [TeamData] = isFiltering ? self.viewModel.filteredTeams : self.viewModel.teamList
         switch teamStatus {
         case .ready:
             print("Cell tapped")
+            guard let vc = UIStoryboard(name: "PlayerList", bundle: nil).instantiateViewController(identifier: "PlayerListViewController") as? PlayerListViewController else {
+                return
+            }
+            let teamId: Int = teamList[indexPath.row].teamId
+//            vc.playerList = self.viewModel.retrievePlayers(teamId: teamId)
+            vc.coreDataStack = self.coreDataStack
+            vc.teamId = teamId
+            self.navigationController?.pushViewController(vc, animated: true)
         case .loading:
             print("Loader tapped")
         }

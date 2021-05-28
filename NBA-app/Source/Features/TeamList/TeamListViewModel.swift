@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import UIKit
+import CoreData
 
 class TeamListViewModel {
     
@@ -16,6 +18,8 @@ class TeamListViewModel {
     // Current page
     private var currentTeamsPage: Int = 1
     
+    var player: [NSManagedObject] = []
+
     // Team repository to handle data
     private let teamRepository: TeamRepository
     // Team repository initialization
@@ -42,6 +46,37 @@ class TeamListViewModel {
             }
         }
     }
+    
+//    func retrievePlayers(teamId: Int) -> [PlayersData] {
+//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+//            return []
+//        }
+//        
+//        let managedContext = appDelegate.persistentContainer.viewContext
+//        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Player")
+//
+//        var playerArray: [PlayersData] = []
+//
+//        do {
+//            player = try managedContext.fetch(fetchRequest)
+//
+//            let playerTeam = player.filter{ $0.value(forKeyPath: "teamId") as? Int == teamId }
+//
+//            playerTeam.forEach { (player) in
+//                if let playerName = player.value(forKeyPath: "completeName") as? String,
+//                   let teamFullName = player.value(forKeyPath: "teamFullName") as? String,
+//                   let teamId = player.value(forKeyPath: "teamId") as? Int,
+//                   let playerId = player.value(forKeyPath: "playerId") as? Int {
+//                    let playerData: PlayersData = PlayersData(completeName: playerName, playerId: playerId, teamFullName: teamFullName, teamId: teamId)
+//                    playerArray.append(playerData)
+//                }
+//            }
+//            return playerArray
+//        } catch let error as NSError {
+//            print("Could not fetch. \(error), \(error.userInfo)")
+//            return []
+//        }
+//    }
     
     private func mapJsonToTeamData(from json: TeamsJSONResponse) {
         json.data.forEach { (team) in

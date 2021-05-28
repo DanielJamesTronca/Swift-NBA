@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class TeamListViewController: UIViewController {
 
@@ -46,6 +47,8 @@ class TeamListViewController: UIViewController {
     var teamStatus: TeamStatusEnum = .loading
     
     var viewModel: TeamListViewModel = TeamListViewModel(teamRepository: TeamRepositoryImpl())
+        
+    var coreDataStack: CoreDataStack!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,12 +58,8 @@ class TeamListViewController: UIViewController {
         self.configureSearchController()
         // Current view title
         self.title = "nba_teams_title".localized
-        navigationController?.navigationBar.prefersLargeTitles = true
+//        navigationController?.navigationBar.prefersLargeTitles = true
         self.view.backgroundColor = UIColor.nbaDark
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         self.retrieveData()
     }
     
@@ -124,7 +123,6 @@ class TeamListViewController: UIViewController {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "search_teams_searchbar".localized
-//        tableView.tableHeaderView = searchController.searchBar
         navigationItem.searchController = searchController
         definesPresentationContext = true
         searchController.searchBar.isTranslucent = true

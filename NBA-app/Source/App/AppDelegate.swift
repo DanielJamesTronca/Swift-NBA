@@ -12,8 +12,10 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func applicationWillTerminate(_ application: UIApplication) {
-        self.saveContext()
+//        self.saveContext()
     }
+    
+    lazy var coreDataStack: CoreDataStack = { return CoreDataStack(modelName: "NBAPlayers") }()
     
     // MARK: - Core Data stack
     lazy var persistentContainer: NSPersistentContainer = {
@@ -63,6 +65,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
     }
-    
 }
 
