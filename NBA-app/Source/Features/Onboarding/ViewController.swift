@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 
 class ViewController: UIViewController {
-        
+    
     let coreDataStack: CoreDataStack = {
         //swiftlint:disable:next force_cast
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -20,12 +20,12 @@ class ViewController: UIViewController {
     var viewModel: OnboardingViewModel?
     
     private let stackView: UIStackView = {
-         $0.distribution = .fill
-         $0.axis = .horizontal
-         $0.alignment = .center
-         $0.spacing = 10
-         return $0
-     }(UIStackView())
+        $0.distribution = .fill
+        $0.axis = .horizontal
+        $0.alignment = .center
+        $0.spacing = MarginManager.smallMargin
+        return $0
+    }(UIStackView())
     
     private let firstCircle = UIView()
     private let secondCircle = UIView()
@@ -53,7 +53,11 @@ class ViewController: UIViewController {
         // We can improve this solution by getting this data run-time.
         if self.getRecordsCount() <= 2000 {
             setupConstraints()
-            self.retrieveBigBatchOfPlayers()
+            self.viewModel?.retrieveBigBatchOfPlayers(completionHandler: { (success) in
+                if success {
+                    self.setRootViewController()
+                }
+            })
         } else {
             setRootViewController()
         }
@@ -79,11 +83,11 @@ class ViewController: UIViewController {
         let jumpDuration: Double = 0.30
         let delayDuration: Double = 1.25
         let totalDuration: Double = delayDuration + jumpDuration*2
-
+        
         let jumpRelativeDuration: Double = jumpDuration / totalDuration
         let jumpRelativeTime: Double = delayDuration / totalDuration
         let fallRelativeTime: Double = (delayDuration + jumpDuration) / totalDuration
-
+        
         for (index, circle) in circles.enumerated() {
             let delay = jumpDuration * 2 * TimeInterval(index) / TimeInterval(circles.count)
             UIView.animateKeyframes(withDuration: totalDuration, delay: delay, options: [.repeat], animations: {
@@ -94,25 +98,6 @@ class ViewController: UIViewController {
                     circle.frame.origin.y += 30
                 }
             })
-        }
-    }
-    
-    private func retrieveBigBatchOfPlayers() {
-        let dispatchGroup: DispatchGroup = DispatchGroup()
-        // We know there are almost 35 pages.
-        // For the time being we retrieve data from the first 25.
-        // We can improve this solution by getting this data run-time.
-        for i in 1 ..< 25 {
-            dispatchGroup.enter()
-            self.viewModel?.retrieveAllPlayers(currentPage: i, completionHandler: { (success) in
-                if success {
-                    dispatchGroup.leave()
-                }
-            })
-        }
-        dispatchGroup.notify(queue: .main) {
-            print("Finished all requests!")
-            self.setRootViewController()
         }
     }
     
