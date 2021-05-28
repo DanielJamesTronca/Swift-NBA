@@ -12,7 +12,7 @@ class NBA_appTests: XCTestCase {
 
     var fakeRepository: TeamRepository?
     var fakeRepository404Error: TeamRepository?
-//    var fakeRepository500Error: TeamRepository?
+//    var fakeRepository500Error: BeerRepository?
 
     override func setUpWithError() throws {
         fakeRepository = FakeTeamRepositorySuccess()
