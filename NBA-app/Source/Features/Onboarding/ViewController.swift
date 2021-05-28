@@ -9,9 +9,7 @@ import UIKit
 import CoreData
 
 class ViewController: UIViewController {
-    
-    var viewModel: OnboardingViewModel = OnboardingViewModel(onboardingRepository: OnboardingRepositoryImpl())
-    
+        
     let coreDataStack: CoreDataStack = {
         //swiftlint:disable:next force_cast
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -19,42 +17,97 @@ class ViewController: UIViewController {
         return coreDataStack
     }()
     
+    var viewModel: OnboardingViewModel?
+    
+    private let stackView: UIStackView = {
+         $0.distribution = .fill
+         $0.axis = .horizontal
+         $0.alignment = .center
+         $0.spacing = 10
+         return $0
+     }(UIStackView())
+    
+    private let firstCircle = UIView()
+    private let secondCircle = UIView()
+    private let thirdCircle = UIView()
+    private lazy var circles = [firstCircle, secondCircle, thirdCircle]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor.nbaDark
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        animate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if self.getRecordsCount() <= 3300 {
+        self.viewModel = OnboardingViewModel(
+            onboardingRepository: OnboardingRepositoryImpl(),
+            coreDataStack: coreDataStack
+        )
+        // We know that there is a total of almost 3400 player.
+        // For the time being we retrieve at least 3000 of them.
+        // We can improve this solution by getting this data run-time.
+        if self.getRecordsCount() <= 3000 {
+            setupConstraints()
             self.retrieveBigBatchOfPlayers()
         } else {
             setRootViewController()
         }
     }
     
+    private func setupConstraints() {
+        view.addSubview(stackView)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
+        circles.forEach {
+            $0.layer.cornerRadius = 20/2
+            $0.layer.masksToBounds = true
+            $0.backgroundColor = UIColor.nbaTextColor
+            stackView.addArrangedSubview($0)
+            $0.widthAnchor.constraint(equalToConstant: 20).isActive = true
+            $0.heightAnchor.constraint(equalTo: $0.widthAnchor).isActive = true
+        }
+    }
+    
+    private func animate() {
+        let jumpDuration: Double = 0.30
+        let delayDuration: Double = 1.25
+        let totalDuration: Double = delayDuration + jumpDuration*2
+
+        let jumpRelativeDuration: Double = jumpDuration / totalDuration
+        let jumpRelativeTime: Double = delayDuration / totalDuration
+        let fallRelativeTime: Double = (delayDuration + jumpDuration) / totalDuration
+
+        for (index, circle) in circles.enumerated() {
+            let delay = jumpDuration*2 * TimeInterval(index) / TimeInterval(circles.count)
+            UIView.animateKeyframes(withDuration: totalDuration, delay: delay, options: [.repeat], animations: {
+                UIView.addKeyframe(withRelativeStartTime: jumpRelativeTime, relativeDuration: jumpRelativeDuration) {
+                    circle.frame.origin.y -= 30
+                }
+                UIView.addKeyframe(withRelativeStartTime: fallRelativeTime, relativeDuration: jumpRelativeDuration) {
+                    circle.frame.origin.y += 30
+                }
+            })
+        }
+    }
+    
     private func retrieveBigBatchOfPlayers() {
         let dispatchGroup: DispatchGroup = DispatchGroup()
+        // We know there are almost 35 pages.
+        // For the time being we retrieve data from the first 34.
         for i in 1 ..< 35 {
             dispatchGroup.enter()
-            self.viewModel.retrieveAllPlayers(currentPage: i) { (players) in
-                if let players = players {
-                    players.data.forEach { (player) in
-                        DispatchQueue.main.async {
-                            if !self.someEntityExists(id: player.id, fieldName: "playerId") {
-                                self.save(
-                                    name: "\(player.firstName) \(player.lastName)",
-                                    teamId: Int64(player.team.id),
-                                    playerId: Int64(player.id),
-                                    teamFullName: player.team.fullName
-                                )
-                            }
-                        }
-                    }
+            self.viewModel?.retrieveAllPlayers(currentPage: i, completionHandler: { (success) in
+                if success {
                     dispatchGroup.leave()
                 }
-            }
+            })
         }
-        
         dispatchGroup.notify(queue: .main) {
             print("Finished all requests!")
             self.setRootViewController()
@@ -79,29 +132,5 @@ class ViewController: UIViewController {
         let navi =  UINavigationController.init(rootViewController: newViewController)
         UIApplication.shared.windows.first?.rootViewController = navi
         UIApplication.shared.windows.first?.makeKeyAndVisible()
-    }
-    
-    func save(name: String, teamId: Int64, playerId: Int64, teamFullName: String) {
-        let playerService: PlayerService = PlayerService(context: coreDataStack.managedContext)
-        _ = playerService.createPlayer(
-            name: name,
-            teamId: teamId,
-            playerId: playerId,
-            teamFullName: teamFullName
-        )
-        coreDataStack.saveContext()
-    }
-    
-    func someEntityExists(id: Int, fieldName : String) -> Bool {
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "PlayerCoreDataClass")
-        fetchRequest.predicate = NSPredicate(format: "\(fieldName) == %d", id)
-        var results: [NSManagedObject] = []
-        do {
-            results = try coreDataStack.managedContext.fetch(fetchRequest)
-        }
-        catch {
-            print("error executing fetch request: \(error)")
-        }
-        return results.count > 0
     }
 }

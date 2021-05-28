@@ -9,6 +9,7 @@ import UIKit
 
 class EmptyTeamsTableViewCell: UITableViewCell {
 
+    // Empty image
     @IBOutlet weak var emptyImage: UIImageView!
     @IBOutlet weak var emptyLabel: UILabel!
     

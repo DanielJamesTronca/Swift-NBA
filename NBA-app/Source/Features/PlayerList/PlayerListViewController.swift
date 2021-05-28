@@ -19,6 +19,9 @@ class PlayerListViewController: UITableViewController {
         searchResultsController: nil
     )
     
+    // Delegate to handle transictions through detail view
+    var detailsTransitioningDelegate: InteractiveModalTransitioningDelegate!
+    
     lazy var fetchedResultsController: NSFetchedResultsController<PlayerCoreDataClass> = {
         let fetchRequest: NSFetchRequest<PlayerCoreDataClass> = PlayerCoreDataClass.fetchRequest()
         let sort = NSSortDescriptor(key: #keyPath(PlayerCoreDataClass.completeName), ascending: true)
@@ -47,6 +50,7 @@ class PlayerListViewController: UITableViewController {
         // Do any additional setup after loading the view.
         dataSource = setupDataSource()
         self.tableView.tableFooterView = UIView()
+        self.tableView.translatesAutoresizingMaskIntoConstraints = false
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -55,7 +59,10 @@ class PlayerListViewController: UITableViewController {
             if success,
                let teamAbbreviation = self.teamData?.teamAbbreviation,
                let playerCount = self.fetchedResultsController.fetchedObjects?.count {
-                self.navigationItem.title = "\(teamAbbreviation) (\(playerCount))"
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                    self.navigationItem.title = "\(teamAbbreviation) (\(playerCount))"
+                }
             }
         }
     }
@@ -89,6 +96,19 @@ extension PlayerListViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let controller: PlayerDetailViewController = PlayerDetailViewController(
+            nibName: "PlayerDetailViewController",
+            bundle: nil
+        )
+        detailsTransitioningDelegate = InteractiveModalTransitioningDelegate(from: self, to: controller)
+        controller.modalPresentationStyle = .custom
+        controller.transitioningDelegate = detailsTransitioningDelegate
+        controller.playerData = self.fetchedResultsController.object(at: indexPath)
+        present(
+            controller,
+            animated: true,
+            completion: nil
+        )
     }
 }
 

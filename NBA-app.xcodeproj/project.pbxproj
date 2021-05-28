@@ -52,6 +52,11 @@
 		34C90EB226603BD40013A7ED /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 34C90EB426603BD40013A7ED /* Localizable.strings */; };
 		34C90EBD26603D460013A7ED /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C90EBC26603D460013A7ED /* StringExtensions.swift */; };
 		34C90EC526603EA70013A7ED /* TeamListVC+SearchResultUpdating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C90EC426603EA70013A7ED /* TeamListVC+SearchResultUpdating.swift */; };
+		34E0182E2661301100B9F1EA /* PlayerDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E0182D2661301100B9F1EA /* PlayerDetailViewController.swift */; };
+		34E018362661301C00B9F1EA /* InteractiveModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E018352661301C00B9F1EA /* InteractiveModalPresentationController.swift */; };
+		34E0183B2661302E00B9F1EA /* InteractiveModalTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E0183A2661302E00B9F1EA /* InteractiveModalTransitioningDelegate.swift */; };
+		34E018402661305D00B9F1EA /* ModalScaleState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34E0183F2661305D00B9F1EA /* ModalScaleState.swift */; };
+		34E0184D266130C900B9F1EA /* PlayerDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 34E0184C266130C900B9F1EA /* PlayerDetailViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -126,6 +131,11 @@
 		34C90EB826603BD90013A7ED /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
 		34C90EBC26603D460013A7ED /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		34C90EC426603EA70013A7ED /* TeamListVC+SearchResultUpdating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TeamListVC+SearchResultUpdating.swift"; sourceTree = "<group>"; };
+		34E0182D2661301100B9F1EA /* PlayerDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailViewController.swift; sourceTree = "<group>"; };
+		34E018352661301C00B9F1EA /* InteractiveModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveModalPresentationController.swift; sourceTree = "<group>"; };
+		34E0183A2661302E00B9F1EA /* InteractiveModalTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveModalTransitioningDelegate.swift; sourceTree = "<group>"; };
+		34E0183F2661305D00B9F1EA /* ModalScaleState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalScaleState.swift; sourceTree = "<group>"; };
+		34E0184C266130C900B9F1EA /* PlayerDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlayerDetailViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,6 +239,11 @@
 		34707BEF265FE91500F8EA86 /* PlayerDetail */ = {
 			isa = PBXGroup;
 			children = (
+				34E0182C2661300300B9F1EA /* Data */,
+				34E0184C266130C900B9F1EA /* PlayerDetailViewController.xib */,
+				34E0182D2661301100B9F1EA /* PlayerDetailViewController.swift */,
+				34E018352661301C00B9F1EA /* InteractiveModalPresentationController.swift */,
+				34E0183A2661302E00B9F1EA /* InteractiveModalTransitioningDelegate.swift */,
 			);
 			path = PlayerDetail;
 			sourceTree = "<group>";
@@ -418,6 +433,14 @@
 			path = Localization;
 			sourceTree = "<group>";
 		};
+		34E0182C2661300300B9F1EA /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				34E0183F2661305D00B9F1EA /* ModalScaleState.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -529,6 +552,7 @@
 				34A75C9D265FFC8000B321A6 /* PlayerList.storyboard in Resources */,
 				34C90EB226603BD40013A7ED /* Localizable.strings in Resources */,
 				3482262D265FE60B0081284B /* Assets.xcassets in Resources */,
+				34E0184D266130C900B9F1EA /* PlayerDetailViewController.xib in Resources */,
 				3482262B265FE60A0081284B /* Main.storyboard in Resources */,
 				34C90E632660149E0013A7ED /* LoadingTeamsTableViewCell.xib in Resources */,
 				34C90E92266039570013A7ED /* Color.xcassets in Resources */,
@@ -572,12 +596,16 @@
 				34707BF1265FE9C900F8EA86 /* TeamListViewModel.swift in Sources */,
 				34C90EBD26603D460013A7ED /* StringExtensions.swift in Sources */,
 				34707C00265FEA8B00F8EA86 /* HTTPMethodEnum.swift in Sources */,
+				34E0182E2661301100B9F1EA /* PlayerDetailViewController.swift in Sources */,
 				34A75CB5266011A000B321A6 /* UITableViewExtensions.swift in Sources */,
 				34C90E6F2660237D0013A7ED /* TeamRepository.swift in Sources */,
 				34C90E69266014BA0013A7ED /* TeamTableViewCell.swift in Sources */,
 				34A75C70265FF61C00B321A6 /* PlayersData.swift in Sources */,
+				34E0183B2661302E00B9F1EA /* InteractiveModalTransitioningDelegate.swift in Sources */,
+				34E018402661305D00B9F1EA /* ModalScaleState.swift in Sources */,
 				34A75C7C265FF84000B321A6 /* OnboardingRepository.swift in Sources */,
 				34A75C98265FFC4900B321A6 /* PlayerListViewController.swift in Sources */,
+				34E018362661301C00B9F1EA /* InteractiveModalPresentationController.swift in Sources */,
 				34A75CC8266012EC00B321A6 /* PlayerListViewModel.swift in Sources */,
 				34C90E8D266039200013A7ED /* UIColorExtensions.swift in Sources */,
 				34A75C89265FF86A00B321A6 /* OnboardingViewModel.swift in Sources */,

@@ -27,10 +27,10 @@ class LoadingTeamsTableViewCell: UITableViewCell {
     private func setupUI() {
         // Loading label setup
         self.loadingLabel.text = "generic_loading_title".localized
-        self.loadingLabel.textColor = UIColor.red
+        self.loadingLabel.textColor = UIColor.nbaTextColor
         self.loadingLabel.font = UIFont.systemFont(ofSize: 15, weight: .regular)
 
         // Activity indicator setup
-        self.activityIndicator.color = UIColor.red
+        self.activityIndicator.color = UIColor.nbaTextColor
     }
 }

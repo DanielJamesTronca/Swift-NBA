@@ -9,14 +9,16 @@ import Foundation
 
 class PlayersData {
     let completeName: String
-    let playerId: Int
+    let playerId: Int64
     let teamFullName: String
-    let teamId: Int
+    let teamId: Int64
+    let position: String
     
-    init(completeName: String, playerId: Int, teamFullName: String, teamId: Int) {
+    init(completeName: String, playerId: Int64, teamFullName: String, teamId: Int64, position: String) {
         self.completeName = completeName
         self.playerId = playerId
         self.teamFullName = teamFullName
         self.teamId = teamId
+        self.position = position
     }
 }
