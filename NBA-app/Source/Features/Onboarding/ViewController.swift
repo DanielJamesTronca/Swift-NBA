@@ -70,7 +70,7 @@ class ViewController: UIViewController {
             $0.layer.masksToBounds = true
             $0.backgroundColor = UIColor.nbaTextColor
             stackView.addArrangedSubview($0)
-            $0.widthAnchor.constraint(equalToConstant: 20).isActive = true
+            $0.widthAnchor.constraint(equalToConstant: MarginManager.smallMediumMargin).isActive = true
             $0.heightAnchor.constraint(equalTo: $0.widthAnchor).isActive = true
         }
     }
@@ -100,7 +100,7 @@ class ViewController: UIViewController {
     private func retrieveBigBatchOfPlayers() {
         let dispatchGroup: DispatchGroup = DispatchGroup()
         // We know there are almost 35 pages.
-        // For the time being we retrieve data from the first 20.
+        // For the time being we retrieve data from the first 25.
         // We can improve this solution by getting this data run-time.
         for i in 1 ..< 25 {
             dispatchGroup.enter()

@@ -36,7 +36,7 @@ class TeamListViewModel {
                 completionHandler(nil)
             case .failure(let error):
                 print(error.localizedDescription)
-                // Sample error code for testing purposes (See SatispayExcerciseTest)!
+                // Sample error code for testing purposes!
                 // Extend error code managaement! (Alamofire would be nice!)
                 let errorStructure: ErrorStructure = error.mapNetworkErrorToUIErrorData(errorCode: 404)
                 completionHandler(errorStructure)
