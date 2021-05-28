@@ -49,9 +49,9 @@ class ViewController: UIViewController {
             coreDataStack: coreDataStack
         )
         // We know that there is a total of almost 3400 player.
-        // For the time being we retrieve at least 3000 of them.
+        // For the time being we retrieve at least 2000 of them.
         // We can improve this solution by getting this data run-time.
-        if self.getRecordsCount() <= 3000 {
+        if self.getRecordsCount() <= 2000 {
             setupConstraints()
             self.retrieveBigBatchOfPlayers()
         } else {
@@ -100,8 +100,9 @@ class ViewController: UIViewController {
     private func retrieveBigBatchOfPlayers() {
         let dispatchGroup: DispatchGroup = DispatchGroup()
         // We know there are almost 35 pages.
-        // For the time being we retrieve data from the first 34.
-        for i in 1 ..< 35 {
+        // For the time being we retrieve data from the first 25.
+        // We can improve this solution by getting this data run-time.
+        for i in 1 ..< 25 {
             dispatchGroup.enter()
             self.viewModel?.retrieveAllPlayers(currentPage: i, completionHandler: { (success) in
                 if success {
