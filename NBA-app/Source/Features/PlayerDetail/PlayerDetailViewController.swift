@@ -46,10 +46,10 @@ class PlayerDetailViewController: UIViewController {
     
     private func configureView() {
         guard let playerData = playerData else { return }
-        playerName.text = playerData.completeName
-        playerTeam.text = playerData.teamFullName
+        playerName.text = "Name: \(playerData.completeName ?? "")"
+        playerTeam.text = "Team: \(playerData.teamFullName ?? "")"
         if let position = playerData.position, !position.isEmpty {
-            playerPosition.text = position
+            playerPosition.text = "Position: \(position)"
         } else {
             playerPosition.text = "None"
         }
@@ -80,7 +80,7 @@ class PlayerDetailViewController: UIViewController {
         self.playerImageView.tintColor = UIColor.nbaTextColor
         
         // Fake action button configuration
-        self.fakeActionButton.setTitle("Bookmark", for: .normal)
+        self.fakeActionButton.setTitle("save_button_title".localized, for: .normal)
         self.fakeActionButton.setImage(UIImage(systemName: "bookmark"), for: .normal)
         self.fakeActionButton.backgroundColor = UIColor.lightGray
         self.fakeActionButton.layer.cornerRadius = MarginManager.smallMargin
@@ -94,5 +94,17 @@ class PlayerDetailViewController: UIViewController {
         self.xmarkButton.tintColor = UIColor.nbaTextColor?.withAlphaComponent(0.75)
         self.xmarkButton.contentVerticalAlignment = .fill
         self.xmarkButton.contentHorizontalAlignment = .fill
+        
+        // Player name setup
+        self.playerName.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        self.playerName.textColor = UIColor.nbaTextColor
+        
+        // Player name setup
+        self.playerTeam.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        self.playerTeam.textColor = UIColor.nbaTextColor
+        
+        // Player name setup
+        self.playerPosition.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        self.playerPosition.textColor = UIColor.nbaTextColor
     }
 }
