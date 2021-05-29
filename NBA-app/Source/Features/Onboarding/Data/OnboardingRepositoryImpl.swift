@@ -25,8 +25,8 @@ class OnboardingRepositoryImpl: OnboardingRepository {
         )
     }
     
-    func checkIfDataContainsPlayer(dataProvider: TeamPlayerProvider, id: Int, fieldName: String) -> Bool {
-        return dataProvider.checkIfDataContainsPlayer(id: id, fieldName: fieldName)
+    func checkIfDataContainsPlayerId(dataProvider: TeamPlayerProvider, id: Int) -> Bool {
+        return dataProvider.checkIfDataContainsPlayerId(id: id)
     }
     
     func getTotalPlayerCount(dataProvider: TeamPlayerProvider) -> Int {

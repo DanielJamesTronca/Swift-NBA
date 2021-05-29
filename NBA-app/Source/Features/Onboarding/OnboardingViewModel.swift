@@ -12,12 +12,10 @@ class OnboardingViewModel {
     private var pageLimit: Int = 100
     
     private let dataProvider: TeamPlayerProvider
-    
-//    private let coreDataStack: CoreDataStack?
-    
-    // Beer repository to handle data
+        
+    // Onboarding repository to handle data
     private let onboardingRepository: OnboardingRepository
-    // Beer repository initialization
+    // Onboarding repository initialization
     init(onboardingRepository: OnboardingRepository, dataProvider: TeamPlayerProvider) {
         self.onboardingRepository = onboardingRepository
         self.dataProvider = dataProvider
@@ -59,7 +57,7 @@ class OnboardingViewModel {
             case .success(let players):
                 players.data.forEach { (player) in
                     DispatchQueue.main.async {
-                        if !self.onboardingRepository.checkIfDataContainsPlayer(dataProvider: self.dataProvider, id: player.id, fieldName: "playerId") {
+                        if !self.onboardingRepository.checkIfDataContainsPlayer(dataProvider: self.dataProvider, id: player.id) {
                             self.onboardingRepository.addPlayer(
                                 dataProvider: self.dataProvider,
                                 name: "\(player.firstName) \(player.lastName)",

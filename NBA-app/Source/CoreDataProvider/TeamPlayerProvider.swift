@@ -55,8 +55,9 @@ class TeamPlayerProvider {
         return fetchedResultsController
     }()
     
-    // Add any additional operation here
+    // MARK: - Add any additional operation here -
     
+    // Add player
     func addPlayer(
         in context: NSManagedObjectContext,
         name: String,
@@ -76,10 +77,11 @@ class TeamPlayerProvider {
         }
     }
     
-    func checkIfDataContainsPlayer(id: Int, fieldName: String) -> Bool {
+    // Check if our data contains a given player Id
+    func checkIfDataContainsPlayerId(id: Int) -> Bool {
         var results: [NSManagedObject] = []
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "PlayerCoreDataClass")
-        fetchRequest.predicate = NSPredicate(format: "\(fieldName) == %d", id)
+        fetchRequest.predicate = NSPredicate(format: "playerId == %d", id)
         do {
             results = try self.persistentContainer.viewContext.fetch(fetchRequest)
         }
@@ -89,6 +91,7 @@ class TeamPlayerProvider {
         return results.count > 0
     }
     
+    // Get total player count
     func getTotalPlayerCount() -> Int {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PlayerCoreDataClass")
         do {

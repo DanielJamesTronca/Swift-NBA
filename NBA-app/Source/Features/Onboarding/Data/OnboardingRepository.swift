@@ -13,7 +13,7 @@ protocol OnboardingRepository {
     
     func addPlayer(dataProvider: TeamPlayerProvider, name: String, teamId: Int64, playerId: Int64, teamFullName: String, position: String)
     
-    func checkIfDataContainsPlayer(dataProvider: TeamPlayerProvider, id: Int, fieldName: String) -> Bool
+    func checkIfDataContainsPlayerId(dataProvider: TeamPlayerProvider, id: Int) -> Bool
     
     func getTotalPlayerCount(dataProvider: TeamPlayerProvider) -> Int
     
