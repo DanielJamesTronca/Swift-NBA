@@ -16,7 +16,7 @@
 		34707C0B265FF31F00F8EA86 /* NBAPlayers.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 34707C09265FF31F00F8EA86 /* NBAPlayers.xcdatamodeld */; };
 		34822624265FE60A0081284B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34822623265FE60A0081284B /* AppDelegate.swift */; };
 		34822626265FE60A0081284B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34822625265FE60A0081284B /* SceneDelegate.swift */; };
-		34822628265FE60A0081284B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34822627265FE60A0081284B /* ViewController.swift */; };
+		34822628265FE60A0081284B /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34822627265FE60A0081284B /* OnboardingViewController.swift */; };
 		3482262B265FE60A0081284B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34822629265FE60A0081284B /* Main.storyboard */; };
 		3482262D265FE60B0081284B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3482262C265FE60B0081284B /* Assets.xcassets */; };
 		34822630265FE60B0081284B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3482262E265FE60B0081284B /* LaunchScreen.storyboard */; };
@@ -92,7 +92,7 @@
 		34822620265FE60A0081284B /* NBA-app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NBA-app.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		34822623265FE60A0081284B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		34822625265FE60A0081284B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		34822627265FE60A0081284B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		34822627265FE60A0081284B /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		3482262A265FE60A0081284B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		3482262C265FE60B0081284B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3482262F265FE60B0081284B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -285,7 +285,7 @@
 				346ED9322660E8EB00EA1D8B /* Services */,
 				34A75C7A265FF83200B321A6 /* Data */,
 				34A75C88265FF86A00B321A6 /* OnboardingViewModel.swift */,
-				34822627265FE60A0081284B /* ViewController.swift */,
+				34822627265FE60A0081284B /* OnboardingViewController.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -606,7 +606,7 @@
 				34C90E5B266014770013A7ED /* EmptyTeamsTableViewCell.swift in Sources */,
 				346ED9342660E8FD00EA1D8B /* PlayerService.swift in Sources */,
 				34C90E52266014140013A7ED /* TeamStatusEnum.swift in Sources */,
-				34822628265FE60A0081284B /* ViewController.swift in Sources */,
+				34822628265FE60A0081284B /* OnboardingViewController.swift in Sources */,
 				34A75CAD2660118900B321A6 /* MarginManager.swift in Sources */,
 				34C90E74266023880013A7ED /* TeamRepositoryImpl.swift in Sources */,
 				34C90E792660244F0013A7ED /* TeamJSONResponse.swift in Sources */,

@@ -62,7 +62,7 @@ extension TeamListViewController: UITableViewDelegate, UITableViewDataSource {
                     return UITableViewCell()
                 }
                 
-                // Remove programmatically dividers only if isLoading
+                // Remove programmatically dividers
                 cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
                 cell.selectionStyle = .none
                 return cell
@@ -83,13 +83,15 @@ extension TeamListViewController: UITableViewDelegate, UITableViewDataSource {
         let teamList: [TeamData] = isFiltering ? self.viewModel.filteredTeams : self.viewModel.teamList
         switch teamStatus {
         case .ready:
-            print("Cell tapped")
-            guard let vc = UIStoryboard(name: "PlayerList", bundle: nil).instantiateViewController(identifier: "PlayerListViewController") as? PlayerListViewController else {
-                return
+            if !teamList.isEmpty {
+                print("Cell tapped")
+                guard let vc = UIStoryboard(name: "PlayerList", bundle: nil).instantiateViewController(identifier: "PlayerListViewController") as? PlayerListViewController else {
+                    return
+                }
+                vc.coreDataStack = self.coreDataStack
+                vc.teamData = teamList[indexPath.row]
+                self.navigationController?.pushViewController(vc, animated: true)
             }
-            vc.coreDataStack = self.coreDataStack
-            vc.teamData = teamList[indexPath.row]
-            self.navigationController?.pushViewController(vc, animated: true)
         case .loading:
             print("Loader tapped")
         }

@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class ViewController: UIViewController {
+class OnboardingViewController: UIViewController {
     
     let coreDataStack: CoreDataStack = {
         //swiftlint:disable:next force_cast
@@ -19,6 +19,7 @@ class ViewController: UIViewController {
     
     var viewModel: OnboardingViewModel?
     
+    // Stack view
     private let stackView: UIStackView = {
         $0.distribution = .fill
         $0.axis = .horizontal
@@ -27,6 +28,7 @@ class ViewController: UIViewController {
         return $0
     }(UIStackView())
     
+    // Circles 
     private let firstCircle: UIView = UIView()
     private let secondCircle: UIView = UIView()
     private let thirdCircle: UIView = UIView()
@@ -48,15 +50,8 @@ class ViewController: UIViewController {
             onboardingRepository: OnboardingRepositoryImpl(),
             coreDataStack: coreDataStack
         )
-        // We know that there is a total of almost 3400 player.
-        // For the time being we retrieve at least 2000 of them.
-        // We can improve this solution by getting this data run-time.
-        if self.getRecordsCount() <= 2000 {
-            setupConstraints()
-            self.retrieveBigBatchOfPlayers()
-        } else {
-            setRootViewController()
-        }
+        // Retrieve data here
+        generateData()
     }
     
     private func setupConstraints() {
@@ -72,6 +67,19 @@ class ViewController: UIViewController {
             stackView.addArrangedSubview($0)
             $0.widthAnchor.constraint(equalToConstant: MarginManager.smallMediumMargin).isActive = true
             $0.heightAnchor.constraint(equalTo: $0.widthAnchor).isActive = true
+        }
+    }
+    
+    private func generateData() {
+        if let viewModel = self.viewModel, viewModel.shouldLoadData() {
+            setupConstraints()
+            viewModel.retrieveBigBatchOfPlayers { (success) in
+                if success {
+                    self.setRootViewController()
+                }
+            }
+        } else {
+            setRootViewController()
         }
     }
     
@@ -94,35 +102,6 @@ class ViewController: UIViewController {
                     circle.frame.origin.y += 30
                 }
             })
-        }
-    }
-    
-    private func retrieveBigBatchOfPlayers() {
-        let dispatchGroup: DispatchGroup = DispatchGroup()
-        // We know there are almost 35 pages.
-        // For the time being we retrieve data from the first 25.
-        // We can improve this solution by getting this data run-time.
-        for i in 1 ..< 25 {
-            dispatchGroup.enter()
-            self.viewModel?.retrieveAllPlayers(currentPage: i) { (success) in
-                // Move on
-                dispatchGroup.leave()
-            }
-        }
-        dispatchGroup.notify(queue: .main) {
-            print("Finished all requests!")
-            self.setRootViewController()
-        }
-    }
-    
-    func getRecordsCount() -> Int {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PlayerCoreDataClass")
-        do {
-            let count = try coreDataStack.managedContext.count(for: fetchRequest)
-            return count
-        } catch {
-            print(error.localizedDescription)
-            return 0
         }
     }
     

@@ -8,6 +8,8 @@
 import UIKit
 import CoreData
 
+typealias DataSource = UITableViewDiffableDataSource<String, NSManagedObjectID>
+
 class PlayerListViewController: UITableViewController {
     
     // Team data from previous view controller
@@ -17,7 +19,7 @@ class PlayerListViewController: UITableViewController {
     var coreDataStack: CoreDataStack!
     
     // UITablew view diffable data source with CoreData
-    var dataSource: UITableViewDiffableDataSource<String, NSManagedObjectID>?
+    var dataSource: DataSource?
     
     // Delegate to handle transictions through detail view
     var detailsTransitioningDelegate: InteractiveModalTransitioningDelegate!

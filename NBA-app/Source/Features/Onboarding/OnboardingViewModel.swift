@@ -6,8 +6,6 @@
 //
 
 import Foundation
-import CoreData
-import UIKit
 
 class OnboardingViewModel {
     
@@ -23,14 +21,42 @@ class OnboardingViewModel {
         self.coreDataStack = coreDataStack
     }
     
-    func retrieveAllPlayers(currentPage: Int, _ completionHandler: @escaping (Bool) -> Void) {
+    func shouldLoadData() -> Bool {
+        // TODO: Remove this "magic number"!!
+        if self.onboardingRepository.getRecordsCount(coreDataStack: coreDataStack) <= 2000 {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    func retrieveBigBatchOfPlayers(_ completionHandler: @escaping (Bool) -> Void) {
+        let dispatchGroup: DispatchGroup = DispatchGroup()
+        // We know there are almost 35 pages.
+        // For the time being we retrieve data from the first 25.
+        // We can improve this solution by getting this data run-time.
+        for i in 0 ... 25 {
+            dispatchGroup.enter()
+            self.retrieveAllPlayers(currentPage: i) { (success) in
+                // Move on
+                dispatchGroup.leave()
+            }
+        }
+        dispatchGroup.notify(queue: .main) {
+            print("Finished all requests!")
+            completionHandler(true)
+        }
+    }
+    
+    private func retrieveAllPlayers(currentPage: Int, _ completionHandler: @escaping (Bool) -> Void) {
         self.onboardingRepository.retrievePlayers(currentPage: currentPage, pageLimit: self.pageLimit) { (response) in
             switch response {
             case .success(let players):
                 players.data.forEach { (player) in
                     DispatchQueue.main.async {
-                        if !self.someEntityExists(id: player.id, fieldName: "playerId") {
-                            self.save(
+                        if !self.onboardingRepository.someEntityExists(coreDataStack: self.coreDataStack, id: player.id, fieldName: "playerId") {
+                            self.onboardingRepository.save(
+                                coreDataStack: self.coreDataStack,
                                 name: "\(player.firstName) \(player.lastName)",
                                 teamId: Int64(player.team.id),
                                 playerId: Int64(player.id),
@@ -46,30 +72,5 @@ class OnboardingViewModel {
                 completionHandler(false)
             }
         }
-    }
-    
-    func save(name: String, teamId: Int64, playerId: Int64, teamFullName: String, position: String) {
-        let playerService: PlayerService = PlayerService(context: coreDataStack.managedContext)
-        _ = playerService.createPlayer(
-            name: name,
-            teamId: teamId,
-            playerId: playerId,
-            teamFullName: teamFullName,
-            position: position
-        )
-        coreDataStack.saveContext()
-    }
-    
-    func someEntityExists(id: Int, fieldName : String) -> Bool {
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "PlayerCoreDataClass")
-        fetchRequest.predicate = NSPredicate(format: "\(fieldName) == %d", id)
-        var results: [NSManagedObject] = []
-        do {
-            results = try coreDataStack.managedContext.fetch(fetchRequest)
-        }
-        catch {
-            print("error executing fetch request: \(error)")
-        }
-        return results.count > 0
     }
 }
