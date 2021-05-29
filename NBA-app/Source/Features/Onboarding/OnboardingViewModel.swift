@@ -35,6 +35,7 @@ class OnboardingViewModel {
         // We know there are almost 35 pages.
         // For the time being we retrieve data from the first 25.
         // We can improve this solution by getting this data run-time.
+        // TODO: Remove this "magic number"!!
         for i in 0 ... 25 {
             dispatchGroup.enter()
             self.retrieveAllPlayers(currentPage: i) { (success) in

@@ -10,18 +10,12 @@ import CoreData
 
 class CoreDataStack {
     
-    private let modelName: String
-    
-    init(modelName: String) {
-        self.modelName = modelName
-    }
-    
     lazy var managedContext: NSManagedObjectContext = {
         return self.storeContainer.viewContext
     }()
     
-    private lazy var storeContainer: NSPersistentContainer = {
-        let container = NSPersistentCloudKitContainer(name: self.modelName)
+    lazy var storeContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "NBAPlayers")
         container.loadPersistentStores { _, error in
             if let error = error as NSError? {
                 print("Unresolved error \(error), \(error.userInfo)")

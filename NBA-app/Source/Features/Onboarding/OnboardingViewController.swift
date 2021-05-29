@@ -107,10 +107,9 @@ class OnboardingViewController: UIViewController {
     
     fileprivate func setRootViewController() {
         let storyBoard: UIStoryboard = UIStoryboard(name: "TeamList", bundle: nil)
-        let newViewController = storyBoard.instantiateViewController(withIdentifier: "TeamListViewController") as! TeamListViewController
-        newViewController.coreDataStack = self.coreDataStack
-        let navi =  UINavigationController.init(rootViewController: newViewController)
-        UIApplication.shared.windows.first?.rootViewController = navi
+        let viewController = storyBoard.instantiateViewController(withIdentifier: "TeamListViewController") as! TeamListViewController
+        let teamListNavigationVC =  UINavigationController.init(rootViewController: viewController)
+        UIApplication.shared.windows.first?.rootViewController = teamListNavigationVC
         UIApplication.shared.windows.first?.makeKeyAndVisible()
     }
 }

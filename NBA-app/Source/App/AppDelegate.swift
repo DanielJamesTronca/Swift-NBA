@@ -11,8 +11,9 @@ import CoreData
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    lazy var coreDataStack: CoreDataStack = { return CoreDataStack(modelName: "NBAPlayers") }()
-    
+//    lazy var coreDataStack: CoreDataStack = { return CoreDataStack(modelName: "NBAPlayers") }()
+    lazy var coreDataStack: CoreDataStack = { return CoreDataStack() }()
+
     // MARK: UISceneSession Lifecycle
     
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {

@@ -12,7 +12,7 @@ import UIKit
 final class InteractiveModalPresentationController: UIPresentationController {
     
     // Custom value to handle sheet size
-    private let presentedYOffset: CGFloat = 300
+    private let presentedYOffset: CGFloat = 350
     
     // Cuurent state
     private var state: ModalScaleState = .interaction

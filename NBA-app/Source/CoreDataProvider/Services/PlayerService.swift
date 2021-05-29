@@ -9,6 +9,7 @@ import Foundation
 import CoreData
 
 struct PlayerService {
+    
     let context: NSManagedObjectContext
     
     func createPlayer(name: String, teamId: Int64, playerId: Int64, teamFullName: String, position: String) -> PlayerCoreDataClass {

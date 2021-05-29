@@ -14,6 +14,8 @@ class PlayerDetailViewController: UIViewController {
     @IBOutlet var mainView: UIView!
     /// Player image view (fake for the time being)
     @IBOutlet weak var playerImageView: UIImageView!
+    /// Informations labels collection
+    @IBOutlet var playerInformationLabels: [UILabel]!
     /// Player name label
     @IBOutlet weak var playerName: UILabel!
     /// Player team label
@@ -46,6 +48,7 @@ class PlayerDetailViewController: UIViewController {
         self.configureView()
     }
     
+    // Configure view with data
     private func configureView() {
         guard let playerData = playerData else { return }
         playerName.text = playerData.completeName
@@ -53,7 +56,7 @@ class PlayerDetailViewController: UIViewController {
         if let position = playerData.position, !position.isEmpty {
             playerPosition.text = position
         } else {
-            playerPosition.text = "Pos: none"
+            playerPosition.text = "none"
         }
     }
     
@@ -98,15 +101,15 @@ class PlayerDetailViewController: UIViewController {
         self.xmarkButton.contentHorizontalAlignment = .fill
         
         // Player name setup
-        self.playerName.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        self.playerName.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         self.playerName.textColor = UIColor.nbaTextColor
         
         // Player name setup
-        self.playerTeam.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        self.playerTeam.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         self.playerTeam.textColor = UIColor.nbaTextColor
         
         // Player name setup
-        self.playerPosition.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        self.playerPosition.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         self.playerPosition.textColor = UIColor.nbaTextColor
         
         // Array of images for cell information
@@ -121,6 +124,21 @@ class PlayerDetailViewController: UIViewController {
             let image: UIImage = UIImage(systemName: imageName)!
             imageInformation.image = image
             imageInformation.tintColor = UIColor.nbaTextColor?.withAlphaComponent(0.5)
+        }
+        
+        // Array of information titles for our labels collection
+        let informationArray: [String] = [
+            "player_name_title".localized,
+            "player_team_title".localized,
+            "player_position_title".localized
+        ]
+        
+        // Set images in Outlet collection
+        for (label, text) in zip(playerInformationLabels, informationArray) {
+            // Player name setup
+            label.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+            label.textColor = UIColor.nbaTextColor
+            label.text = text
         }
     }
 }

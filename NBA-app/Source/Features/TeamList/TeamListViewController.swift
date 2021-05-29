@@ -52,9 +52,6 @@ class TeamListViewController: UIViewController {
     
     // View model
     var viewModel: TeamListViewModel = TeamListViewModel(teamRepository: TeamRepositoryImpl())
-        
-    // Core data stack to perform actions
-    var coreDataStack: CoreDataStack!
     
     override func viewDidLoad() {
         super.viewDidLoad()

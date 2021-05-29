@@ -14,3 +14,6 @@
 "no_data_title_label" = "Sfortunatamente non c'è nessun dato!";
 "search_teams_searchbar" = "Cerca squadra...";
 "save_button_title" = "Salva giocatore";
+"player_name_title" = "Nome giocatore:";
+"player_team_title" = "Nome squadra:";
+"player_position_title" = "Posizione:";

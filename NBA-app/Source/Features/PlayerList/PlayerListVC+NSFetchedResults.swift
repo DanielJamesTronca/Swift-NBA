@@ -16,7 +16,10 @@ extension PlayerListViewController: NSFetchedResultsControllerDelegate {
         _ controller: NSFetchedResultsController<NSFetchRequestResult>,
         didChangeContentWith snapshot: NSDiffableDataSourceSnapshotReference
     ) {
-        let snapshot = snapshot as NSDiffableDataSourceSnapshot<String, NSManagedObjectID>
-        dataSource?.apply(snapshot, animatingDifferences: true)
+        DispatchQueue.main.async {
+            let snapshot = snapshot as NSDiffableDataSourceSnapshot<String, NSManagedObjectID>
+            self.dataSource?.apply(snapshot, animatingDifferences: true)
+            self.tableView.reloadData()
+        }
     }
 }

@@ -85,10 +85,10 @@ extension TeamListViewController: UITableViewDelegate, UITableViewDataSource {
         case .ready:
             if !teamList.isEmpty {
                 print("Cell tapped")
-                guard let vc = UIStoryboard(name: "PlayerList", bundle: nil).instantiateViewController(identifier: "PlayerListViewController") as? PlayerListViewController else {
+                let storyboard: UIStoryboard = UIStoryboard(name: "PlayerList", bundle: nil)
+                guard let vc = storyboard.instantiateViewController(identifier: "PlayerListViewController") as? PlayerListViewController else {
                     return
                 }
-                vc.coreDataStack = self.coreDataStack
                 vc.teamData = teamList[indexPath.row]
                 self.navigationController?.pushViewController(vc, animated: true)
             }

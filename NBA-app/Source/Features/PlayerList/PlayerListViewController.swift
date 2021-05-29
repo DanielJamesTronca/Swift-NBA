@@ -15,39 +15,23 @@ class PlayerListViewController: UITableViewController {
     // Team data from previous view controller
     var teamData: TeamData?
     
-    // Core data stack to perform Core Data actions
-    var coreDataStack: CoreDataStack!
-    
     // UITablew view diffable data source with CoreData
     var dataSource: DataSource?
     
     // Delegate to handle transictions through detail view
     var detailsTransitioningDelegate: InteractiveModalTransitioningDelegate!
     
-    // FetcResultController to perform core data actions
-    lazy var fetchedResultsController: NSFetchedResultsController<PlayerCoreDataClass> = {
-        let fetchRequest: NSFetchRequest<PlayerCoreDataClass> = PlayerCoreDataClass.fetchRequest()
-        let sort = NSSortDescriptor(key: #keyPath(PlayerCoreDataClass.completeName), ascending: true)
-        
-        // Filter by team id
-        if let teamId = self.teamData?.teamId {
-            fetchRequest.predicate = NSPredicate(format: "teamId == %d", argumentArray: [teamId])
-        }
-        
-        // Important!!
-        fetchRequest.sortDescriptors = [sort]
-        
-        let fetchedResultsController = NSFetchedResultsController(
-            fetchRequest: fetchRequest,
-            managedObjectContext: coreDataStack.managedContext,
-            sectionNameKeyPath: nil,
-            cacheName: nil
+    // Data provider
+    lazy var dataProvider: TeamPlayerProvider = {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let provider = TeamPlayerProvider(
+            with: appDelegate!.coreDataStack.storeContainer,
+            teamId: teamData?.teamId,
+            fetchedResultsControllerDelegate: self
         )
-        
-        fetchedResultsController.delegate = self
-        return fetchedResultsController
+        return provider
     }()
-        
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -58,12 +42,17 @@ class PlayerListViewController: UITableViewController {
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.reloadData()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.retrieveData { (success) in
             if success,
                let teamAbbreviation = self.teamData?.teamAbbreviation,
-               let playerCount = self.fetchedResultsController.fetchedObjects?.count {
+               let playerCount = self.dataProvider.fetchedResultsController.fetchedObjects?.count {
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                     self.navigationItem.title = "\(teamAbbreviation) (\(playerCount))"
@@ -75,7 +64,7 @@ class PlayerListViewController: UITableViewController {
     fileprivate func retrieveData(completionHandler: @escaping (_ success: Bool) -> Void) {
         UIView.performWithoutAnimation {
             do {
-                try fetchedResultsController.performFetch()
+                try dataProvider.fetchedResultsController.performFetch()
                 completionHandler(true)
             } catch let error as NSError {
                 completionHandler(false)

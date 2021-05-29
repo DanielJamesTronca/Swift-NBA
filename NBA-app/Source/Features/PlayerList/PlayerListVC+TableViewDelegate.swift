@@ -10,10 +10,11 @@ import UIKit
 import CoreData
 
 extension PlayerListViewController {
+    
     func setupDataSource() -> UITableViewDiffableDataSource<String, NSManagedObjectID> {
         UITableViewDiffableDataSource(tableView: tableView) { [unowned self] tableView, indexPath, _ in
             let cell = tableView.dequeueReusableCell(withIdentifier: "PlayerName", for: indexPath)
-            let player = self.fetchedResultsController.object(at: indexPath)
+            let player = self.dataProvider.fetchedResultsController.object(at: indexPath)
             self.configure(cell: cell, for: player)
             return cell
         }
@@ -33,7 +34,7 @@ extension PlayerListViewController {
         detailsTransitioningDelegate = InteractiveModalTransitioningDelegate(from: self, to: controller)
         controller.modalPresentationStyle = .custom
         controller.transitioningDelegate = detailsTransitioningDelegate
-        controller.playerData = self.fetchedResultsController.object(at: indexPath)
+        controller.playerData = self.dataProvider.fetchedResultsController.object(at: indexPath)
         present(
             controller,
             animated: true,

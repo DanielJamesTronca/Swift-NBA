@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3424B14C2660E60F00D68608 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3424B14B2660E60F00D68608 /* CoreDataStack.swift */; };
-		3451775F2662269C00094CDB /* OnboardingViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3451775E2662269C00094CDB /* OnboardingViewModelTest.swift */; };
+		343A8AA32662592F00CABD34 /* TeamPlayerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343A8AA22662592F00CABD34 /* TeamPlayerProvider.swift */; };
 		346ED9342660E8FD00EA1D8B /* PlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346ED9332660E8FD00EA1D8B /* PlayerService.swift */; };
 		34707BF1265FE9C900F8EA86 /* TeamListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34707BF0265FE9C900F8EA86 /* TeamListViewModel.swift */; };
 		34707BF7265FEA6F00F8EA86 /* RemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34707BF6265FEA6F00F8EA86 /* RemoteDataSource.swift */; };
@@ -33,7 +33,6 @@
 		34A75CB5266011A000B321A6 /* UITableViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A75CB4266011A000B321A6 /* UITableViewExtensions.swift */; };
 		34A75CBB2660127600B321A6 /* TeamListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A75CBA2660127600B321A6 /* TeamListViewController.swift */; };
 		34A75CC3266012BB00B321A6 /* TeamList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 34A75CC2266012BB00B321A6 /* TeamList.storyboard */; };
-		34A75CC8266012EC00B321A6 /* PlayerListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A75CC7266012EC00B321A6 /* PlayerListViewModel.swift */; };
 		34A75CCD2660132600B321A6 /* TeamListVC+TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A75CCC2660132600B321A6 /* TeamListVC+TableViewDelegate.swift */; };
 		34C90E52266014140013A7ED /* TeamStatusEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C90E51266014140013A7ED /* TeamStatusEnum.swift */; };
 		34C90E5B266014770013A7ED /* EmptyTeamsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34C90E59266014770013A7ED /* EmptyTeamsTableViewCell.swift */; };
@@ -83,7 +82,7 @@
 
 /* Begin PBXFileReference section */
 		3424B14B2660E60F00D68608 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
-		3451775E2662269C00094CDB /* OnboardingViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModelTest.swift; sourceTree = "<group>"; };
+		343A8AA22662592F00CABD34 /* TeamPlayerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamPlayerProvider.swift; sourceTree = "<group>"; };
 		346ED9332660E8FD00EA1D8B /* PlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerService.swift; sourceTree = "<group>"; };
 		34707BF0265FE9C900F8EA86 /* TeamListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListViewModel.swift; sourceTree = "<group>"; };
 		34707BF6265FEA6F00F8EA86 /* RemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataSource.swift; sourceTree = "<group>"; };
@@ -114,7 +113,6 @@
 		34A75CB4266011A000B321A6 /* UITableViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITableViewExtensions.swift; sourceTree = "<group>"; };
 		34A75CBA2660127600B321A6 /* TeamListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListViewController.swift; sourceTree = "<group>"; };
 		34A75CC2266012BB00B321A6 /* TeamList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TeamList.storyboard; sourceTree = "<group>"; };
-		34A75CC7266012EC00B321A6 /* PlayerListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerListViewModel.swift; sourceTree = "<group>"; };
 		34A75CCC2660132600B321A6 /* TeamListVC+TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TeamListVC+TableViewDelegate.swift"; sourceTree = "<group>"; };
 		34C90E51266014140013A7ED /* TeamStatusEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamStatusEnum.swift; sourceTree = "<group>"; };
 		34C90E59266014770013A7ED /* EmptyTeamsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTeamsTableViewCell.swift; sourceTree = "<group>"; };
@@ -177,9 +175,19 @@
 			isa = PBXGroup;
 			children = (
 				34707C09265FF31F00F8EA86 /* NBAPlayers.xcdatamodeld */,
-				3424B14B2660E60F00D68608 /* CoreDataStack.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		343A8AA1266258E900CABD34 /* CoreDataProvider */ = {
+			isa = PBXGroup;
+			children = (
+				3424B14A2660E60400D68608 /* Model */,
+				346ED9322660E8EB00EA1D8B /* Services */,
+				3424B14B2660E60F00D68608 /* CoreDataStack.swift */,
+				343A8AA22662592F00CABD34 /* TeamPlayerProvider.swift */,
+			);
+			path = CoreDataProvider;
 			sourceTree = "<group>";
 		};
 		346ED9322660E8EB00EA1D8B /* Services */ = {
@@ -240,7 +248,6 @@
 			isa = PBXGroup;
 			children = (
 				34A75C68265FF5E300B321A6 /* Data */,
-				34A75CC7266012EC00B321A6 /* PlayerListViewModel.swift */,
 				34A75C97265FFC4900B321A6 /* PlayerListViewController.swift */,
 				34E01854266142DC00B9F1EA /* PlayerListVC+NSFetchedResults.swift */,
 				34E018592661430F00B9F1EA /* PlayerListVC+TableViewDelegate.swift */,
@@ -282,7 +289,6 @@
 		34707C08265FF2E100F8EA86 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				346ED9322660E8EB00EA1D8B /* Services */,
 				34A75C7A265FF83200B321A6 /* Data */,
 				34A75C88265FF86A00B321A6 /* OnboardingViewModel.swift */,
 				34822627265FE60A0081284B /* OnboardingViewController.swift */,
@@ -325,7 +331,6 @@
 			children = (
 				34E0186A2661469800B9F1EA /* Utils */,
 				3482263A265FE60C0081284B /* TeamListViewModelTests.swift */,
-				3451775E2662269C00094CDB /* OnboardingViewModelTest.swift */,
 				3482263C265FE60C0081284B /* Info.plist */,
 			);
 			path = "NBA-appTests";
@@ -360,7 +365,6 @@
 		34A75C7A265FF83200B321A6 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				3424B14A2660E60400D68608 /* Model */,
 				34A75C7B265FF84000B321A6 /* OnboardingRepository.swift */,
 				34A75C80265FF84F00B321A6 /* OnboardingRepositoryImpl.swift */,
 			);
@@ -370,6 +374,7 @@
 		34A75CA92660110100B321A6 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				343A8AA1266258E900CABD34 /* CoreDataProvider */,
 				34707BF5265FEA6100F8EA86 /* Network */,
 				34707BE7265FE8B000F8EA86 /* App */,
 				34707BEC265FE8FD00F8EA86 /* Features */,
@@ -605,6 +610,7 @@
 			files = (
 				34C90E5B266014770013A7ED /* EmptyTeamsTableViewCell.swift in Sources */,
 				346ED9342660E8FD00EA1D8B /* PlayerService.swift in Sources */,
+				343A8AA32662592F00CABD34 /* TeamPlayerProvider.swift in Sources */,
 				34C90E52266014140013A7ED /* TeamStatusEnum.swift in Sources */,
 				34822628265FE60A0081284B /* OnboardingViewController.swift in Sources */,
 				34A75CAD2660118900B321A6 /* MarginManager.swift in Sources */,
@@ -630,7 +636,6 @@
 				34A75C7C265FF84000B321A6 /* OnboardingRepository.swift in Sources */,
 				34A75C98265FFC4900B321A6 /* PlayerListViewController.swift in Sources */,
 				34E018362661301C00B9F1EA /* InteractiveModalPresentationController.swift in Sources */,
-				34A75CC8266012EC00B321A6 /* PlayerListViewModel.swift in Sources */,
 				34C90E8D266039200013A7ED /* UIColorExtensions.swift in Sources */,
 				34A75C89265FF86A00B321A6 /* OnboardingViewModel.swift in Sources */,
 				34A75CBB2660127600B321A6 /* TeamListViewController.swift in Sources */,
@@ -652,7 +657,6 @@
 				3482263B265FE60C0081284B /* TeamListViewModelTests.swift in Sources */,
 				34E0186D266146BD00B9F1EA /* FakeTeamRepository.swift in Sources */,
 				34E01875266146D700B9F1EA /* DataFactory.swift in Sources */,
-				3451775F2662269C00094CDB /* OnboardingViewModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
