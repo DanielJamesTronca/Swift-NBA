@@ -57,7 +57,7 @@ class OnboardingViewModel {
             case .success(let players):
                 players.data.forEach { (player) in
                     DispatchQueue.main.async {
-                        if !self.onboardingRepository.checkIfDataContainsPlayer(dataProvider: self.dataProvider, id: player.id) {
+                        if !self.onboardingRepository.checkIfDataContainsPlayerId(dataProvider: self.dataProvider, id: player.id) {
                             self.onboardingRepository.addPlayer(
                                 dataProvider: self.dataProvider,
                                 name: "\(player.firstName) \(player.lastName)",
