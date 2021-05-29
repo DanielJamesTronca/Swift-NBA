@@ -11,20 +11,22 @@ class OnboardingViewModel {
     
     private var pageLimit: Int = 100
     
-    private let coreDataStack: CoreDataStack
+    private let dataProvider: TeamPlayerProvider
+    
+//    private let coreDataStack: CoreDataStack?
     
     // Beer repository to handle data
     private let onboardingRepository: OnboardingRepository
     // Beer repository initialization
-    init(onboardingRepository: OnboardingRepository, coreDataStack: CoreDataStack) {
+    init(onboardingRepository: OnboardingRepository, dataProvider: TeamPlayerProvider) {
         self.onboardingRepository = onboardingRepository
-        self.coreDataStack = coreDataStack
+        self.dataProvider = dataProvider
     }
     
     func shouldLoadData() -> Bool {
         // TODO: Remove this "magic number"!!
         let magicNumber: Int = 2000
-        if self.onboardingRepository.getRecordsCount(coreDataStack: coreDataStack) <= magicNumber {
+        if self.onboardingRepository.getTotalPlayerCount(dataProvider: dataProvider) <= magicNumber {
             return true
         } else {
             return false
@@ -57,9 +59,9 @@ class OnboardingViewModel {
             case .success(let players):
                 players.data.forEach { (player) in
                     DispatchQueue.main.async {
-                        if !self.onboardingRepository.someEntityExists(coreDataStack: self.coreDataStack, id: player.id, fieldName: "playerId") {
-                            self.onboardingRepository.save(
-                                coreDataStack: self.coreDataStack,
+                        if !self.onboardingRepository.checkIfDataContainsPlayer(dataProvider: self.dataProvider, id: player.id, fieldName: "playerId") {
+                            self.onboardingRepository.addPlayer(
+                                dataProvider: self.dataProvider,
                                 name: "\(player.firstName) \(player.lastName)",
                                 teamId: Int64(player.team.id),
                                 playerId: Int64(player.id),

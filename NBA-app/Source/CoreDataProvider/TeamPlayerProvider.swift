@@ -56,4 +56,47 @@ class TeamPlayerProvider {
     }()
     
     // Add any additional operation here
+    
+    func addPlayer(
+        in context: NSManagedObjectContext,
+        name: String,
+        teamId: Int64,
+        playerId: Int64,
+        teamFullName: String,
+        position: String
+    ) {
+        context.perform {
+            let player = PlayerCoreDataClass(context: context)
+            player.completeName = name
+            player.teamId = teamId
+            player.playerId = playerId
+            player.teamFullName = teamFullName
+            player.position = position
+            context.save(with: .addPlayer)
+        }
+    }
+    
+    func checkIfDataContainsPlayer(id: Int, fieldName: String) -> Bool {
+        var results: [NSManagedObject] = []
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "PlayerCoreDataClass")
+        fetchRequest.predicate = NSPredicate(format: "\(fieldName) == %d", id)
+        do {
+            results = try self.persistentContainer.viewContext.fetch(fetchRequest)
+        }
+        catch {
+            print("error executing fetch request: \(error)")
+        }
+        return results.count > 0
+    }
+    
+    func getTotalPlayerCount() -> Int {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PlayerCoreDataClass")
+        do {
+            let count = try persistentContainer.viewContext.count(for: fetchRequest)
+            return count
+        } catch {
+            print(error.localizedDescription)
+            return 0
+        }
+    }
 }

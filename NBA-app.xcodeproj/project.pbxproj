@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3413006226627A8700E0D967 /* NSManagedObjectContext+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3413006126627A8700E0D967 /* NSManagedObjectContext+Extensions.swift */; };
+		3413006726627C1200E0D967 /* NSPersistenContainer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3413006626627C1200E0D967 /* NSPersistenContainer+Extensions.swift */; };
 		3424B14C2660E60F00D68608 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3424B14B2660E60F00D68608 /* CoreDataStack.swift */; };
 		343A8AA32662592F00CABD34 /* TeamPlayerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343A8AA22662592F00CABD34 /* TeamPlayerProvider.swift */; };
 		346ED9342660E8FD00EA1D8B /* PlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346ED9332660E8FD00EA1D8B /* PlayerService.swift */; };
@@ -81,6 +83,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3413006126627A8700E0D967 /* NSManagedObjectContext+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Extensions.swift"; sourceTree = "<group>"; };
+		3413006626627C1200E0D967 /* NSPersistenContainer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPersistenContainer+Extensions.swift"; sourceTree = "<group>"; };
 		3424B14B2660E60F00D68608 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		343A8AA22662592F00CABD34 /* TeamPlayerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamPlayerProvider.swift; sourceTree = "<group>"; };
 		346ED9332660E8FD00EA1D8B /* PlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerService.swift; sourceTree = "<group>"; };
@@ -399,6 +403,8 @@
 				34C90E822660254F0013A7ED /* Error+Extensions.swift */,
 				34C90E8C266039200013A7ED /* UIColor+Extensions.swift */,
 				34C90EBC26603D460013A7ED /* String+Extensions.swift */,
+				3413006126627A8700E0D967 /* NSManagedObjectContext+Extensions.swift */,
+				3413006626627C1200E0D967 /* NSPersistenContainer+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -631,6 +637,7 @@
 				34E0185A2661430F00B9F1EA /* PlayerListVC+TableViewDelegate.swift in Sources */,
 				34C90E69266014BA0013A7ED /* TeamTableViewCell.swift in Sources */,
 				34A75C70265FF61C00B321A6 /* PlayersData.swift in Sources */,
+				3413006726627C1200E0D967 /* NSPersistenContainer+Extensions.swift in Sources */,
 				34E0183B2661302E00B9F1EA /* InteractiveModalTransitioningDelegate.swift in Sources */,
 				34E018402661305D00B9F1EA /* ModalScaleState.swift in Sources */,
 				34A75C7C265FF84000B321A6 /* OnboardingRepository.swift in Sources */,
@@ -647,6 +654,7 @@
 				34A75C6B265FF5F600B321A6 /* PlayersJSONResponse.swift in Sources */,
 				34E01855266142DC00B9F1EA /* PlayerListVC+NSFetchedResults.swift in Sources */,
 				34822626265FE60A0081284B /* SceneDelegate.swift in Sources */,
+				3413006226627A8700E0D967 /* NSManagedObjectContext+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,15 +6,18 @@
 //
 
 import UIKit
-import CoreData
 
 class OnboardingViewController: UIViewController {
     
-    let coreDataStack: CoreDataStack = {
-        //swiftlint:disable:next force_cast
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let coreDataStack = appDelegate.coreDataStack
-        return coreDataStack
+    // Data provider
+    lazy var dataProvider: TeamPlayerProvider = {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let provider = TeamPlayerProvider(
+            with: appDelegate!.coreDataStack.storeContainer,
+            teamId: nil,
+            fetchedResultsControllerDelegate: nil
+        )
+        return provider
     }()
     
     var viewModel: OnboardingViewModel?
@@ -48,7 +51,7 @@ class OnboardingViewController: UIViewController {
         super.viewWillAppear(animated)
         self.viewModel = OnboardingViewModel(
             onboardingRepository: OnboardingRepositoryImpl(),
-            coreDataStack: coreDataStack
+            dataProvider: self.dataProvider
         )
         // Retrieve data here
         generateData()

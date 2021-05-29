@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import CoreData
 
 class OnboardingRepositoryImpl: OnboardingRepository {
     
@@ -15,40 +14,23 @@ class OnboardingRepositoryImpl: OnboardingRepository {
         RemoteDataSource.shared.execute(urlString, requestType: .get, completion: completion)
     }
     
-    func save(coreDataStack: CoreDataStack, name: String, teamId: Int64, playerId: Int64, teamFullName: String, position: String) {
-        let playerService: PlayerService = PlayerService(context: coreDataStack.managedContext)
-        _ = playerService.createPlayer(
+    func addPlayer(dataProvider: TeamPlayerProvider, name: String, teamId: Int64, playerId: Int64, teamFullName: String, position: String) {
+        dataProvider.addPlayer(
+            in: dataProvider.persistentContainer.viewContext,
             name: name,
             teamId: teamId,
             playerId: playerId,
             teamFullName: teamFullName,
             position: position
         )
-        coreDataStack.saveContext()
     }
     
-    func someEntityExists(coreDataStack: CoreDataStack, id: Int, fieldName: String) -> Bool {
-        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "PlayerCoreDataClass")
-        fetchRequest.predicate = NSPredicate(format: "\(fieldName) == %d", id)
-        var results: [NSManagedObject] = []
-        do {
-            results = try coreDataStack.managedContext.fetch(fetchRequest)
-        }
-        catch {
-            print("error executing fetch request: \(error)")
-        }
-        return results.count > 0
+    func checkIfDataContainsPlayer(dataProvider: TeamPlayerProvider, id: Int, fieldName: String) -> Bool {
+        return dataProvider.checkIfDataContainsPlayer(id: id, fieldName: fieldName)
     }
     
-    func getRecordsCount(coreDataStack: CoreDataStack) -> Int {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "PlayerCoreDataClass")
-        do {
-            let count = try coreDataStack.managedContext.count(for: fetchRequest)
-            return count
-        } catch {
-            print(error.localizedDescription)
-            return 0
-        }
+    func getTotalPlayerCount(dataProvider: TeamPlayerProvider) -> Int {
+        return dataProvider.getTotalPlayerCount()
     }
 }
 
