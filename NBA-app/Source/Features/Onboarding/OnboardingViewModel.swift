@@ -23,7 +23,8 @@ class OnboardingViewModel {
     
     func shouldLoadData() -> Bool {
         // TODO: Remove this "magic number"!!
-        if self.onboardingRepository.getRecordsCount(coreDataStack: coreDataStack) <= 2000 {
+        let magicNumber: Int = 2000
+        if self.onboardingRepository.getRecordsCount(coreDataStack: coreDataStack) <= magicNumber {
             return true
         } else {
             return false
@@ -36,7 +37,8 @@ class OnboardingViewModel {
         // For the time being we retrieve data from the first 20 to avoid extra loading
         // We can improve this solution by getting this data run-time.
         // TODO: Remove this "magic number"!!
-        for i in 0 ... 25 {
+        let magicNumber: Int = 25
+        for i in 0 ... magicNumber {
             dispatchGroup.enter()
             self.retrieveAllPlayers(currentPage: i) { (success) in
                 // Move on
