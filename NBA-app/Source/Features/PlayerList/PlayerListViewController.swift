@@ -16,7 +16,7 @@ class PlayerListViewController: UITableViewController {
     // Core data stack to perform Core Data actions
     var coreDataStack: CoreDataStack!
     
-    // UITablew view diffable data source
+    // UITablew view diffable data source with CoreData
     var dataSource: UITableViewDiffableDataSource<String, NSManagedObjectID>?
     
     // Delegate to handle transictions through detail view

@@ -23,7 +23,7 @@ class OnboardingViewModel {
         self.coreDataStack = coreDataStack
     }
     
-    func retrieveAllPlayers(currentPage: Int, completionHandler: @escaping (Bool) -> Void) {
+    func retrieveAllPlayers(currentPage: Int, _ completionHandler: @escaping (Bool) -> Void) {
         self.onboardingRepository.retrievePlayers(currentPage: currentPage, pageLimit: self.pageLimit) { (response) in
             switch response {
             case .success(let players):

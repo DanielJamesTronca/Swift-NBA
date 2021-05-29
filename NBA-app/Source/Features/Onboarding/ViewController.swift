@@ -27,10 +27,10 @@ class ViewController: UIViewController {
         return $0
     }(UIStackView())
     
-    private let firstCircle = UIView()
-    private let secondCircle = UIView()
-    private let thirdCircle = UIView()
-    private lazy var circles = [firstCircle, secondCircle, thirdCircle]
+    private let firstCircle: UIView = UIView()
+    private let secondCircle: UIView = UIView()
+    private let thirdCircle: UIView = UIView()
+    private lazy var circles: [UIView] = [firstCircle, secondCircle, thirdCircle]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,7 +66,7 @@ class ViewController: UIViewController {
         stackView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         stackView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         circles.forEach {
-            $0.layer.cornerRadius = 20/2
+            $0.layer.cornerRadius = MarginManager.smallMediumMargin/2
             $0.layer.masksToBounds = true
             $0.backgroundColor = UIColor.nbaTextColor
             stackView.addArrangedSubview($0)
@@ -78,7 +78,7 @@ class ViewController: UIViewController {
     private func animate() {
         let jumpDuration: Double = 0.30
         let delayDuration: Double = 1.25
-        let totalDuration: Double = delayDuration + jumpDuration*2
+        let totalDuration: Double = delayDuration + jumpDuration * 2
         
         let jumpRelativeDuration: Double = jumpDuration / totalDuration
         let jumpRelativeTime: Double = delayDuration / totalDuration
@@ -104,11 +104,10 @@ class ViewController: UIViewController {
         // We can improve this solution by getting this data run-time.
         for i in 1 ..< 25 {
             dispatchGroup.enter()
-            self.viewModel?.retrieveAllPlayers(currentPage: i, completionHandler: { (success) in
-                if success {
-                    dispatchGroup.leave()
-                }
-            })
+            self.viewModel?.retrieveAllPlayers(currentPage: i) { (success) in
+                // Move on
+                dispatchGroup.leave()
+            }
         }
         dispatchGroup.notify(queue: .main) {
             print("Finished all requests!")

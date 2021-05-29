@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3424B14C2660E60F00D68608 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3424B14B2660E60F00D68608 /* CoreDataStack.swift */; };
+		3451775F2662269C00094CDB /* OnboardingViewModelTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3451775E2662269C00094CDB /* OnboardingViewModelTest.swift */; };
 		346ED9342660E8FD00EA1D8B /* PlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346ED9332660E8FD00EA1D8B /* PlayerService.swift */; };
 		34707BF1265FE9C900F8EA86 /* TeamListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34707BF0265FE9C900F8EA86 /* TeamListViewModel.swift */; };
 		34707BF7265FEA6F00F8EA86 /* RemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34707BF6265FEA6F00F8EA86 /* RemoteDataSource.swift */; };
@@ -82,6 +83,7 @@
 
 /* Begin PBXFileReference section */
 		3424B14B2660E60F00D68608 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		3451775E2662269C00094CDB /* OnboardingViewModelTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModelTest.swift; sourceTree = "<group>"; };
 		346ED9332660E8FD00EA1D8B /* PlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerService.swift; sourceTree = "<group>"; };
 		34707BF0265FE9C900F8EA86 /* TeamListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListViewModel.swift; sourceTree = "<group>"; };
 		34707BF6265FEA6F00F8EA86 /* RemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataSource.swift; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 			children = (
 				34E0186A2661469800B9F1EA /* Utils */,
 				3482263A265FE60C0081284B /* TeamListViewModelTests.swift */,
+				3451775E2662269C00094CDB /* OnboardingViewModelTest.swift */,
 				3482263C265FE60C0081284B /* Info.plist */,
 			);
 			path = "NBA-appTests";
@@ -649,6 +652,7 @@
 				3482263B265FE60C0081284B /* TeamListViewModelTests.swift in Sources */,
 				34E0186D266146BD00B9F1EA /* FakeTeamRepository.swift in Sources */,
 				34E01875266146D700B9F1EA /* DataFactory.swift in Sources */,
+				3451775F2662269C00094CDB /* OnboardingViewModelTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
