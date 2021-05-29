@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17511" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="PlayerCoreDataClass" representedClassName="PlayerCoreDataClass" syncable="YES" codeGenerationType="class">
+        <attribute name="completeName" optional="YES" attributeType="String"/>
+        <attribute name="playerId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="position" optional="YES" attributeType="String"/>
+        <attribute name="teamFullName" optional="YES" attributeType="String"/>
+        <attribute name="teamId" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+    </entity>
+    <elements>
+        <element name="PlayerCoreDataClass" positionX="-63" positionY="-18" width="128" height="104"/>
+    </elements>
+</model>

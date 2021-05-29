@@ -1,0 +1,19 @@
+/* 
+  Localizable.strings
+  NBA-app
+
+  Created by Daniel James Tronca on 27/05/21.
+  
+*/
+
+"generic_gotcha" = "Capito";
+"generic_error_title" = "Si è verificato un errore!";
+"generic_error_description" = "Qualcosa è andato storto durante la chiamata newtork. Mi dispiace 😭";
+"nba_teams_title" = "Squadre NBA";
+"generic_loading_title" = "Caricamento...";
+"no_data_title_label" = "Sfortunatamente non c'è nessun dato!";
+"search_teams_searchbar" = "Cerca squadra...";
+"save_button_title" = "Salva giocatore";
+"player_name_title" = "Nome giocatore:";
+"player_team_title" = "Nome squadra:";
+"player_position_title" = "Posizione:";
