@@ -33,7 +33,7 @@ class OnboardingViewModel {
     func retrieveBigBatchOfPlayers(_ completionHandler: @escaping (Bool) -> Void) {
         let dispatchGroup: DispatchGroup = DispatchGroup()
         // We know there are almost 35 pages.
-        // For the time being we retrieve data from the first 25.
+        // For the time being we retrieve data from the first 20 to avoid extra loading
         // We can improve this solution by getting this data run-time.
         // TODO: Remove this "magic number"!!
         for i in 0 ... 25 {
