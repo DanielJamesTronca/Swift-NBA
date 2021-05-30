@@ -11,7 +11,6 @@
 		3413006726627C1200E0D967 /* NSPersistenContainer+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3413006626627C1200E0D967 /* NSPersistenContainer+Extensions.swift */; };
 		3424B14C2660E60F00D68608 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3424B14B2660E60F00D68608 /* CoreDataStack.swift */; };
 		343A8AA32662592F00CABD34 /* TeamPlayerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 343A8AA22662592F00CABD34 /* TeamPlayerProvider.swift */; };
-		346ED9342660E8FD00EA1D8B /* PlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 346ED9332660E8FD00EA1D8B /* PlayerService.swift */; };
 		34707BF1265FE9C900F8EA86 /* TeamListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34707BF0265FE9C900F8EA86 /* TeamListViewModel.swift */; };
 		34707BF7265FEA6F00F8EA86 /* RemoteDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34707BF6265FEA6F00F8EA86 /* RemoteDataSource.swift */; };
 		34707C00265FEA8B00F8EA86 /* HTTPMethodEnum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34707BFF265FEA8B00F8EA86 /* HTTPMethodEnum.swift */; };
@@ -87,7 +86,6 @@
 		3413006626627C1200E0D967 /* NSPersistenContainer+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSPersistenContainer+Extensions.swift"; sourceTree = "<group>"; };
 		3424B14B2660E60F00D68608 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		343A8AA22662592F00CABD34 /* TeamPlayerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamPlayerProvider.swift; sourceTree = "<group>"; };
-		346ED9332660E8FD00EA1D8B /* PlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerService.swift; sourceTree = "<group>"; };
 		34707BF0265FE9C900F8EA86 /* TeamListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListViewModel.swift; sourceTree = "<group>"; };
 		34707BF6265FEA6F00F8EA86 /* RemoteDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteDataSource.swift; sourceTree = "<group>"; };
 		34707BFF265FEA8B00F8EA86 /* HTTPMethodEnum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethodEnum.swift; sourceTree = "<group>"; };
@@ -187,19 +185,10 @@
 			isa = PBXGroup;
 			children = (
 				3424B14A2660E60400D68608 /* Model */,
-				346ED9322660E8EB00EA1D8B /* Services */,
 				3424B14B2660E60F00D68608 /* CoreDataStack.swift */,
 				343A8AA22662592F00CABD34 /* TeamPlayerProvider.swift */,
 			);
 			path = CoreDataProvider;
-			sourceTree = "<group>";
-		};
-		346ED9322660E8EB00EA1D8B /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				346ED9332660E8FD00EA1D8B /* PlayerService.swift */,
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 		34707BE7265FE8B000F8EA86 /* App */ = {
@@ -615,7 +604,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				34C90E5B266014770013A7ED /* EmptyTeamsTableViewCell.swift in Sources */,
-				346ED9342660E8FD00EA1D8B /* PlayerService.swift in Sources */,
 				343A8AA32662592F00CABD34 /* TeamPlayerProvider.swift in Sources */,
 				34C90E52266014140013A7ED /* TeamStatusEnum.swift in Sources */,
 				34822628265FE60A0081284B /* OnboardingViewController.swift in Sources */,
